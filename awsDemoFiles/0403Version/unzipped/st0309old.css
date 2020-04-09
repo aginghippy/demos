@@ -1,0 +1,4584 @@
+* {
+    box-sizing: border-box;
+    font-family: apercu-pro, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+}
+
+:root {
+    --font-size: calc(1.1vw + 0.40em); /* 0.5em gives 8px; and 1vw scales; idea from the book CSS In Depth pg 46  */
+
+    --c_text_msg-font-size:0.8rem;
+
+    --c_bot_contain-pad-right:3rem;
+   /* --c_bot_contain-top:5vh; lower it a little*/
+    --c_bot_contain-top:10vh;
+    --c_bot_contain-position:relative;
+    --c_bot_contain-margin-left:10%;
+    --c_bot_contain-max-width:90%;
+
+     /*
+     start medium height for desktop and tablet - so looks more like an ad unit
+    --c_convrs_strm-max-height:83vh;
+    --c_convrs_strm-min-height:83vh;
+    */
+
+    --c_convrs_strm-max-height:74vh;
+    --c_convrs_strm-min-height:74vh;
+
+    --hdr-min-height:5vh;
+    --hdr-max-height:5vh;
+    --hdr-min-border-top-right-radius:15px;
+    --hdr-min-border-top-left-radius:15px;
+    --hdr-padding-top:0.3rem;
+    --hdr-padding-bottom:0.3rem;
+
+    --subhdr-min-height:3vh;
+    --subhdr-padding-top:0.2rem;
+    --subhdr-padding-bottom:0.2rem;
+
+    --t10__title-font-size:1.0rem;
+    --t10__subtitle-font-size:0.9rem;
+    --t10__cta-font-size: 0.6rem;
+    --t10_tl-height:17vh;
+
+
+    --c_ftr-display: none; /* hide it for intro node - which is t10 - to make space; removed by t10 handler */
+
+    --icon-width:95%;
+    --icon-font-size:15%; /* remove this - it has no impact - need width on svg */
+    --chalakh__icon__svg-width:15vw; /* width of svg and right of tool tip have to match for tool tip to be just to the left edge of svg */
+    --chalakh__icon__tooltip-width:70%;
+    --c_tool__tip-right:16%; /* controls where in relation to the svg the tool tip shows up*/
+    --c_tooltip__fontsize:1.3rem;
+
+    --mdl-margin-left:10%;
+    --mdl-max-width: 90%;
+    --mdl-width: 90%;
+    --mdl-top: 20vh;
+    --mdl-padding-right:3rem;
+
+    --image-modal-carousel-margin-right:3rem;
+
+    --er-modal-width: 50%;
+    --er-modal-position: absolute;
+    --er-modal-left: 25%;
+    --er-modal-top: 20vh;
+
+    --cx-modal-width: 100%;
+    --cx-modal-position: absolute;
+    --cx-modal-left: 0%;
+    --cx-modal-top: 10vh; /* need to calculate based on header width for complex - submenu items */
+
+    --mdl-dialog-margin-right:0;
+    --mdl-dialog-margin-left:0;
+    --mdl-dialog-margin-top: 0;
+    --mdl-dialog-margin-bottom: 0;
+    --mdl-dialog-max-width: 100%;
+
+    --mdl-download-gif-width:20%;
+    --mdl-download-gif-height:8%;
+}
+
+body {
+
+}
+/* important - since the offset width is now defined by c_bot_contain */
+.c_hdr, .c_subhdr, .c_convrs_strm,
+.c_audio_mdl, .c_video_mdl, .c_img_mdl,
+.c_bul_mdl, .c_exit_mdl,.c_b2b_cx_mdl,.c_academic_cx_mdl    {
+    width:100%;
+}
+
+.c_bot_contain {
+    padding:0;
+    top:0; /* full screen for cell phones */
+}
+/*** header **/
+
+#header  { /* container fluid has padding, increases distance between menu item and left border and right border */
+   /* height:40px;  div hieght determined by elements in the div, makes it more responsive */ /* height of head in pixels */
+  text-align: center;
+  border-top-right-radius:7px;
+  border-top-left-radius:7px;
+  padding-right:0;
+  padding-left:0;
+ /* min-height:10vh; */
+  /*  box-shadow: inset 1px 1px 0 1px #6891b9; */
+
+}
+
+#skipTheme, #closeBot {
+    background-color: rgb(10, 91, 255);
+    color: rgb(255, 255, 255);
+}
+
+#header  {
+    color: rgb(255, 255, 255);
+    position: relative;
+    display: flex;
+    width: 100%;
+    z-index:5000; /* so the header always covers the conversation boyd stuff that is being scrolled up. */
+
+}
+
+#header .c_hdr_itms {
+    background-color: rgb(10, 91, 255);
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+
+}
+
+#header  .c_hdr_itms .c_chat__icon { /* applies to all nav-items, bold & white */
+    color:rgb(255,246,246); /* menu text white on blue background */
+    font-weight: bold;
+    font-size:1.2rem;
+    flex: 0 0 10%;
+}
+
+#header  .c_hdr_itms .c_sound__icon { /* applies to all nav-items, bold & white */
+  color:rgb(255,246,246); /* menu text white on blue background */
+  font-weight: bold;
+  font-size:1.1rem;
+  flex: 0 0 10%;
+}
+
+#header  .c_hdr_itms .c_campaign__title { /* applies to all nav-items, bold & white */
+    color:rgb(255,246,246); /* menu text white on blue background */
+    font-weight: bold;
+    font-size:1.1rem;
+    flex: 0 0 78%;
+}
+
+#header  .c_hdr_itms .c_close_btn { /* applies to all nav-items, bold & white */
+    color:rgb(255,246,246); /* menu text white on blue background */
+    font-weight: bold;
+    font-size:1.1rem;
+    flex: 0 0 8%;
+    border-top-right-radius: 10px;
+}
+
+#header  .c_hdr_itms .c_close_btn .btn{ /* color blue */
+    background-color: rgb(10, 91, 255); /* menu text white on blue background */
+    font-weight: bold;
+    border:none;
+    padding: 0.005rem 0.50rem; /* overrides setting in bootstrap */
+}
+
+#header  .c_close_btn .btn:focus {
+    outline:none !important; /* so no border when clicked */
+    box-shadow:none !important;
+}
+
+#header .chat__icon_img  { /* to improve Chalakh brand vertical text spacing from bottom of blue bar edge*/
+    padding-top:2px !important; /* ONLY for firefox; bootstrap padding for navbar messes the rendering on firefox of header */
+    font-weight: bold;
+}
+
+#header .sound__icon_img  { /* to improve Chalakh brand vertical text spacing from bottom of blue bar edge*/
+  padding-top:2px !important; /* ONLY for firefox; bootstrap padding for navbar messes the rendering on firefox of header */
+  font-weight: bold;
+}
+
+#header  .c_close_btn .btn:hover{ /* color blue */
+    color:black; /* menu text white on blue background */
+    font-weight: bold;
+    background-color: rgb(10, 91, 255);
+    border:none;
+}
+
+/*** subheader **/
+
+#subheader  { /* container fluid has padding, increases distance between menu item and left border and right border */
+    /* height:40px;  div hieght determined by elements in the div, makes it more responsive */ /* height of head in pixels */
+    text-align: center;
+    padding-right:0;
+    padding-left:0;
+}
+
+
+
+#subheader  {
+    color: rgb(255, 255, 255);
+    position: relative;
+    display: flex;
+    flex-direction:column;
+    width: 100%;
+    z-index:5000; /* so the header always covers the conversation boyd stuff that is being scrolled up. */
+}
+
+#subheader .c_subhdr_itms {
+    background-color: rgb(10, 91, 255);
+    display: flex;
+    justify-content:space-evenly;
+    flex: 1 0 100%;
+}
+#subheader .c_subhdr_itms .btn {
+   /* background-color: #fbb84b;
+    background-color: #8192f5;
+   color: black;*/
+    background-color: black;
+    color: white;
+    border-radius: 1.0rem;
+    font-size: 0.7rem;
+
+/* box-shadow: 1px 1px 2px #fbb84b; */
+}
+
+#subheader .break {
+ flex-basis: 60%;
+ height: 0;
+ border-bottom: solid 1px #257dc3;
+ /* border-bottom: solid 1px #248de0; */
+}
+
+/*** Chalakh Footer **/
+
+#footer { /* container fluid has padding, increases distance between menu item and left border and right border */
+    padding-right:0;
+    padding-left:0;
+    display: flex;
+    justify-content: center;
+}
+
+#footer.navbar  {
+    /*padding-top:2px !important; *//* bootstrap padding for navbar messes the rendering on firefox of header */
+    /* padding-left:15px; */ /* controls where the Chalakh brand and Close button show up */
+    padding: 0 0; /* overrides bs padding which makes navbar uncessarily thick */
+}
+
+#footer .container-fluid  {
+
+    justify-content:flex-start;
+    padding-left:0;
+}
+
+
+
+.modal-backdrop { /* when bootstrap model shows up this controls the background webpage */
+    display: none;
+    opacity:0.1;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#skipTheme.btn, #closeBot.btn  { /* button in the nav bar */
+    font-size:1.5rem;
+    background-color:blue;
+}
+
+/*** Chalakh Icon **/
+
+#chalakhIcon img {
+
+    cursor:pointer;
+    width: var(--chalakh__icon__svg-width)
+}
+
+#tooltip{color:black}
+
+#chalakhIcon #tooltip { /* tooltip text of chalakhicon */
+    visibility: hidden;
+  /*  width: 350px; */ /* controls width of the tool tip box */
+  /*  font-size:14px; *//* need to explicitly state it since 1 rem is too small when the frame is so narrow; */
+    width: var(--chalakh__icon__tooltip-width); /* hieght is adjusted to fit the text; not sure; anyway better to specify in width than in %; equivalent to 350px */
+    background-color: #fdfcfb;
+    color: #101010;
+    text-align: left;
+    border-radius: 12px; /* controls border of the tooltip bubble */
+    border-color: #cccaca; /* changed from #555 */
+    border-style: solid;
+    border-width: 1.0px; /* border of the tool tip bubbler */
+    padding: 10px 10px;
+    position: absolute;
+    z-index: 1;
+  /*  bottom: 110px; */ /* controls where in relation to icon to the tool tip shows up */
+  /*  right:80px; *//* controls where in relation to icon to the tool tip shows up */
+    bottom:35%; /* in relation to the icon */
+    right: var(--c_tool__tip-right);
+    font-size: var(--c_tooltip__fontsize);
+    opacity: 0; /* hide the tool tip */
+    line-height: 1.6;
+    transition: opacity 0.3s;
+    cursor:pointer;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,.4)
+}
+
+#chalakhIcon #tooltip::after {
+    content: "";
+    position: absolute;
+    width:0; /* makes the border the element */
+    height:0;
+    bottom: 5%; /* 5 % from the bottom edge of the span bubble */
+    left: 100%; /* to the right edge of the span bubble*/
+    border-width: 7px; /* controls size of the triangle */
+    border-style: solid;
+    border-color: transparent transparent transparent #555; /* controls the orientation of arrow */
+}
+
+#chalakhIcon #tooltip.c_display__tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* tool tip is shown using above class that is added and removed;
+#chalakhIcon:hover #tooltip {
+    visibility: visible;
+    opacity: 1;
+} */
+
+#chalakhIcon { /* borrowed from drift */
+
+      display: none;  /* toggled to display:flex when the icon is to be shown */
+     position: fixed;
+      bottom: 24px;
+      right: 24px;
+
+      justify-content: flex-end; /* not sure if this is required for the icon */
+      align-items: flex-end; /* not sure if this is required for the icon */
+      flex-direction:column; /* not sure if this is required for the icon */
+      cursor:pointer;
+
+
+
+    /* top:65%;  *//* now the frame is really small; makes the SVG very tiny; position chat icon 65% from the to in the DIV frame; */
+    /*   right:25px; *//* 20px from right edge */
+    /* width: 8%;  of the width of the iframe, if view port decreases in size the icon becomes very small - which is defined as 100% - of the body where it is attached */
+    /* display: flex; */
+    /* bottom : 10vw; /* 422 change - if you specify in view port the icon will move when the frame is resized */
+    /* right:10vw; */
+    /* padding: 0.75rem 0.75rem 0.75rem 1rem; */
+
+}
+
+#chalakhIcon svg {
+    /* overrides the inline px setting in chat.js */
+    width:var(--chalakh__icon__svg-width);
+    height:45px;
+
+
+}
+
+svg {
+    display: block;
+}
+
+/* structure - cui_conversaton_stream (once), cui_msg_stream (once), cui_msg (multiple), cui_msg_bubble (multiple), span */
+/* structure - cui_conversaton_stream (once), cui_resp_stream (once), cui_resp_bubble (multiple), span */
+.c_convrs_strm {
+    padding:0; /* align the width of Chalakh Head with Chalakh Body - col includes some sort of a padding */
+    overflow-y:auto;  /*so if content exceeds the height of div, which is same as height of iframe, add the scroll-bar */
+    display:flex; /* important! now response stream is set to flex-grow:1 and fills the available space */
+    flex-direction:column;
+    box-shadow: -2px 4px 4px 0px #c3c5c7;
+
+    border: 1px solid #e9ecef;
+
+   /* background-color:white; BUG alert - for some reason on safari sometimes it hides the response object */
+
+    position:relative; /* important added temporarily to fix bug */
+
+}
+
+.c_convrs_strm a {
+    text-decoration: none
+}
+
+
+/* transition transform duration dictates speed at which bubble moves from left to right, original 0.8s */
+/* transform y coordinate dictates how far to the left the bubble is iniitially, original -96px */
+/* javascript triggers transition by changing style to translate3d(0,0,0) */
+/* 4-30 added web-kit */
+
+.c_msg__bubble {
+  /*  background-color: rgb(250,250,250); */ /* 05-10; 05-08 */
+    background-color: rgb(255,255,255); /* make text bubble white, on light grey background */
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+    /*transform: translate3d(-120px, 0, 0);  *//* 4-19 was 20 px with rbs change; reverted back to -96px left of normal position, js makes translate 3d (0,0,0) which gives it anmation */
+    transform: translate(-120px, 0);
+    -ms-transform: translate(-120px, 0);
+    -webkit-transition: transform 0.85s cubic-bezier(0.68, 0.01, 0.245, 1.13) 0.35s, color 0.3s ease-in-out 0.25s, min-width 0.35s ease-in-out, min-height 0.35s ease-in-out;
+    /* transition: transform 0.85s cubic-bezier(0.68, 0.01, 0.245, 1.13) 0.35s, color 0.3s ease-in-out 0.25s, min-width 0.35s ease-in-out, min-height 0.35s ease-in-out; */
+   /* -ms-transition: transform 0.3s linear 0.5s; IE messes up transitions so use them only for non-IE browsers including edge*/
+    display: inline-block;   /* orignally in there; 4-19 try removing it */
+    line-height: 1.45em;
+    text-align: left;
+    position: relative; /* 4- 30 was relative - changed to fixed to see what happens; messes things up */
+  /*  padding: 6px 6px; 08-11 don't waste space*/
+    float: left;
+ /*   color: #333; */
+    color: #0c0c0c;
+    border-radius: .25rem; /* 05-15 copied from btn in bootstrap, was 10px */
+    max-width: 100%; /* 07-04 - changed from 90 to 100%, width is precious estate;dictates centering message, within cui_msg */
+    min-width: 20%;
+    margin: 5px 5px 5px 5px; /* 4-19 changed from 15px to 10px; reduced top, bottom margin to 3px -05-04 */
+    min-height: 30px; /* 4-22 changed from12 px to 30 px */
+
+}
+
+.c_resp__bubble {
+  /*  transition: transform 0.85s cubic-bezier(0.68, 0.01, 0.245, 1.13) 0.35s; */ /* 2019 IE gets messed up - so removed it;05-12, 0.5s t0 0.85s, 0.12 to 0.35s  applying same transition as message_stream */
+    -webkit-transition: transform 0.5s cubic-bezier(0.68, 0.01, 0.245, 1.13) 0.120s;
+    color: #007bff; /* 05-22 changed to have all blues be the same; 05-15 color of text in response bubble */
+    -webkit-transform: translate(0, 72px); /* moves the response buttons 72px below  to create animation */
+    -ms-transform: translate(0, 72px);
+    float: right;
+    min-width: 30%;
+    min-height: 12px;
+    margin: 1px 1px 1px 1px; /* 05-04 */
+  /*  display: inline-block; */
+    position: relative;
+    height:100%;
+    width: 100%; /* 05-06 - makes response bubble sizes of same width; 100 % of the container width which is c_btn_resp and other such variants */
+   /* display:flex; *//* this messes up survey etc. Add a DIV to QR and make it flex. so that the children IMMEDIATELY below are centered. This is for QR Response. All other responses there is another DIV in between, e.g. lead-form */
+   /* justify-content:center; */
+}
+
+.c_msg__bubble--fade, .c_msg__bubble--fade:before {
+   animation: font-fade .75s ease-in-out /* 05-04 see if cause of jitter. No does not help */
+}
+
+.c_msg__bubble--slideIn {
+ /*  transform: translate3d(0, 0, 0) */
+    transform: translate(0, 0); /* creates the animation - by moving the message bubble to where it belongs */
+    -ms-transform:translate(0, 0);
+}
+
+.c_msg__bubble span {
+    display: block
+}
+
+.c_msg__bubble--typing > * {
+  /*  display: none !important */
+}
+/* 4-21 changed from 1 to 30s to see what happens, NO impact */
+/*
+.c_msg__bubble--typing:after {
+    animation: loading 1s infinite;
+    color: #ffffff;
+    content: '.';
+    position: absolute;
+    left: 0px
+}
+*/
+
+.c_msg_strm {
+    background-color: rgb(255,255,255);  /* make it white */
+   /* background-color: rgb(249,249,249);  *//* slightly grey background */
+    list-style: none;
+    /* padding-top: 10px; 06-04 since border is always shown it creates a box in between message streams*//*05-04 added padding top to create a gap between first message and message stream */
+    margin: 0 0 0 0; /* 05-17 removed gap completely; 05-10 changed gap so no issue with content greater than height; controls gap between message stream &  response stream  - bottom margin */
+    -webkit-transition: border .50s ease-in-out .50s; /* 2019 - no transition for IE; it was max-width transition; 05-18 remove it, since resizing of viewport becomes animated */ /* 05-05 see if addition of border is smoothed. YES */
+    -ms-transition: border .50s ease-in-out .50s;
+}
+
+.border__to_msg_strm {
+
+ /*   border: 1px solid #e9ecef; */
+    border-bottom:none;
+}
+
+.c_text_msg {
+    overflow: hidden
+}
+
+.c_img_msg {
+    padding: 0 0.2em;
+    margin: 0 0.2em;
+    overflow: hidden;
+    /*  border-top: 1px solid #dee2e6;
+    padding-top: 1rem;
+    padding-right: 0.5rem; */
+    /*  background-color: #dfdfdf; */
+
+}
+
+.c_bul_msg {
+    display:flex;
+    justify-content:flex-start;
+    padding: 0 0.2rem;
+    margin: 0 0.2em;
+    /* border-top: 1px solid #dee2e6; */
+   /* padding-top: 1rem; */
+    /*  padding-right: 0.5rem;
+    background-color: #dfdfdf; */
+}
+
+.c_cd_msg { /* this makes sure the border to message stream is set correctly */
+    display:flex;
+    justify-content:flex-start;
+    padding: 0 0.2rem;
+    margin: 0 0.2rem;
+}
+
+.c_tl_msg { /* this makes sure the border to message stream is set correctly */
+    display:flex;
+    justify-content:flex-start;
+    padding: 0 0.2rem;
+    margin: 0 0.2rem;
+    /*  border-top: 1px solid #dee2e6;
+      padding-top: 1rem;
+      padding-right: 0.5rem;
+    background-color: #dfdfdf;  */
+}
+
+.c_video_msg {
+    padding-right: 0.5rem;
+    margin: 0 0.5rem;
+    overflow: hidden;
+    border: 1px solid #dee2e6;
+    background-color: #dfdfdf;
+}
+
+.c_audio_msg {
+     padding-right: 0.5rem;
+     margin: 0 0.5rem;
+     overflow: hidden;
+     border: 1px solid #dee2e6;
+     background-color: #dfdfdf;
+ }
+
+.c_media_msg {
+  /*  padding-right: 0.5rem; */
+    padding: 0 0.2em;
+    margin: 0 0.2em;
+    overflow: hidden;
+  /* border: 1px solid #dee2e6;
+    background-color: #dfdfdf; */
+}
+
+.c_pmt_msg {
+/*  padding-right: 0.5rem; */
+    padding: 0 0.2em;
+    margin: 0 0.2em;
+  overflow: hidden;
+    /* border: 1px solid #dee2e6;
+      background-color: #dfdfdf; */
+}
+
+.c_doc_msg {
+ /* padding-right: 0.5rem; */
+  overflow: hidden;
+ /* border: 1px solid #dee2e6;
+  background-color: #dfdfdf; */
+    padding: 0 0.2em;
+    margin: 0 0.2em;
+}
+
+.c_text_msg .c_msg__bubble {
+    background-color: #f8f8f8; /* only for message bubbles - cards and other stuff should stand on their own */
+   /* font-size:1.0rem; */
+    padding: 0.2em 0.2em;
+    min-height: 0.3em;
+    font-size: var(--c_text_msg-font-size);
+}
+
+.c_bul_msg .c_msg__bubble {
+    width:100%;
+    font-size:1.0rem;
+    display:flex;
+    flex-direction:column;
+
+  /*  background: linear-gradient(#f9f2f2, white); */
+
+   /* background: linear-gradient(#e2eef5, white); */
+    /*   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); */
+      border: 1px solid #dee2e6;
+      box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  .c_cd_msg .c_msg__bubble {
+      width:100%;
+      font-size:1.0rem;
+      display:flex;
+      flex-direction:column;
+      background-color: #e2eef5;
+      margin: 0;
+      border: solid 1px blue;
+      border-radius: 5px;
+      background: linear-gradient(#e2eef5, white);
+    /*  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); */
+      box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
+      border: 1px solid #dee2e6;
+  }
+
+  .c_video_msg .c_msg__bubble {
+      width:100%;
+      font-size:1.0rem;
+      display:flex;
+      flex-direction:column;
+      box-shadow:none;
+  }
+
+  .c_media_msg .c_msg__bubble {
+      width:100%;
+      font-size:1.0rem;
+      display:flex;
+      flex-direction:column;
+      box-shadow:none;
+      background-color: #e2eef5;
+      margin:0;
+      border: solid 1px blue;
+      border-radius:5px;
+      background: linear-gradient(#e2eef5, white);
+      /*  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); */
+      box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
+      border: 1px solid #dee2e6;
+  }
+
+  .c_pmt_msg .c_msg__bubble {
+    width:100%;
+    font-size:1.0rem;
+    display:flex;
+    flex-direction:column;
+    box-shadow:none;
+  }
+
+  .c_doc_msg .c_msg__bubble {
+      width:100%;
+      font-size:1.0rem;
+      display:flex;
+      flex-direction:column;
+      background-color: #e2eef5;
+      margin:0;
+      border: solid 1px blue;
+      border-radius: 5px;
+      background: linear-gradient(#e2eef5, white);
+      /*  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); */
+      box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
+      border: 1px solid #dee2e6;
+  }
+
+  .c_audio_msg .c_msg__bubble {
+      width:100%;
+      font-size:1.0rem;
+      display:flex;
+      flex-direction:column;
+      border: 1px solid #dee2e6;
+      box-shadow:none;
+  }
+
+  .c_tl_msg .c_msg__bubble {
+      width:100%;
+      font-size:1.0rem;
+      display:flex;
+      flex-direction:column;
+      background-color: #e2eef5;
+      margin: 0;
+      border: solid 1px blue;
+      border-radius: 5px;
+      background: linear-gradient(#e2eef5, white);
+      /*  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); */
+      box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
+      border: 1px solid #dee2e6;
+  }
+
+  .c_img_msg .c_msg__bubble {
+        width:100%; /* need to specify that image mssage bubble is 100% for IE */
+      background-color: #e2eef5;
+      margin: 0;
+      border: solid 1px blue;
+      border-radius: 5px;
+    background: linear-gradient(#e2eef5, white);
+      /*  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); */
+      box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
+    border: 1px solid #dee2e6;
+}
+
+/* content data object headers */
+
+.c_cdo__section_hdr {
+    align-self:center;
+}
+
+.c_cdo__section_hdr__title {
+    font-size: 1.2rem;
+    text-shadow: 0px 1px 0px #13111299;
+    font-weight: 500;
+    color: #0c0c0c;
+    text-align:center;
+}
+
+.c_cdo__section_hdr__subtitle {
+    font-size: 0.8rem;
+}
+
+.c_cdo__section_hdr {
+    color: rgb(51, 51, 51);
+    text-shadow: 0px 1px 0px #f1f1f1;
+    padding:0.5rem;
+}
+
+/** tiles t1, t2, t3, t4, t5, t6, t7 - all msg, t8 (resp), t9 (resp)  css ***/
+
+/** common stuff **/
+
+.c_tls_msg_bdy {
+    flex-wrap:wrap;
+    display:flex;
+    justify-content:space-around;
+  /*  background-color:white; */ /* creates a nice contrast to deleniate 3 areas - text msgs; tile msg content; and response object */
+    width:100%;
+}
+
+.c_tl_itms {
+    display:flex;
+   /* justify-content:center; this centers the tile item along y axis which makes thing look wiered. the headers dont aign at same height*/
+    flex-direction:column;
+    align-items:center;
+    box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
+}
+
+#tileCarouselControlID .carousel-item.active { /* the dot active, ensures that this style sheet is only applied to active carousel; carousel item is the container; without a carousel - cui_tl_msg_buuble is the container */
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center; /* carousel item is the container for the msg_bdy_tl_itms so items get spaced */
+}
+
+/** tile t1 **/
+
+.c_tl_msg.t1 .c_tls_msg_bdy {
+    padding-top: 1rem;
+    background-color: inherit;
+
+}
+.c_tl_msg.t1 .c_tl_itms {
+    border-radius:2px; /* 05-17 */
+    border: 1px solid #dee2e6;
+    min-height:6rem;
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.0rem;
+    font-weight: 500;
+    background-color: white;
+    min-width:31%;
+    max-width:31%;
+    flex: 1 0;
+    /*  flex: 0 0 31%; */
+    box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  .c_tl_msg.t1 .c_tl_hdr__title { /* color schema for tile t1 */
+    font-size: 1.2rem;
+    line-height:1.15rem;
+    color: blue;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px #95a1f1;
+    text-align: center;
+    width:100%; /* ie does not inherit the width from the parent - so need to explicitly say so - else the text does not wrap */
+}
+
+.c_tl_msg.t1 .c_tl_bdy__title { /* color schema for tile t1 */
+    font-weight: 600;
+    font-size: 1.0rem;
+  /*  text-shadow: 1px 1px 2px #ca9393; */
+    color: blue;
+    text-align: center;
+    width:100%;
+    text-shadow: 0px 0px 1px #becff5;
+}
+
+.c_tl_msg.t1 .c_tl_ftr__title { /* color schema for tile t1 */
+   /* font-weight: 600; */
+    font-size: 0.9rem;
+ /*   color: blue; */
+    text-align:center;
+    width:100%;
+}
+
+.c_tl_msg.t1 .c_tl__img__thumbnail {
+    height: 4rem;
+  /*  object-fit: cover; important! this resizes the image and clips it messes up things*/
+    border:none;
+    width:100%;
+}
+
+.c_tl_msg.t1 .carousel {
+    display:flex;
+    justify-content:center;
+    width:100%;
+}
+
+.c_tl_msg.t1 .carousel-inner {
+    flex: 0 0 85%;
+    order:2;
+    padding:1px;
+}
+
+.c_tl_msg.t1 .carousel-control-prev {
+
+    flex: 0 0 6%;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+    order:1;
+}
+
+.c_tl_msg.t1 .carousel-control-next {
+
+    flex: 0 0 6%;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+    order:3;
+}
+
+/** tile t2 **/
+
+.c_tl_msg.t2 .c_tl_itms  { /* no border for t3 tiles */
+    border-radius:2px; /* 05-17 */
+    border-color:#a262ec; /* dividing color between message stream and response stream */
+    border-style: solid; /* rbs add */
+    border-width: 1px;
+}
+
+.c_tl_msg.t2 #tileCarouselControlID .carousel-item.active { /* the dot active, ensures that this style sheet is only applied to active carousel; carousel item is the container; without a carousel - cui_tl_msg_buuble is the container */
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between; /* style only for Tile T2; carousel item is the container for the msg_bdy_tl_itms so items get spaced */
+}
+
+.c_tl_msg.t2 .carousel, .c_tl_msg.t3 .carousel  {
+    width:100%; /* so the last if there are odd number of logos they span the entire width and are justified flex start */
+}
+
+.c_tl_msg.t2 .c_tl_hdr__title { /* color schema for tile t2 */
+    font-size: 0.75rem;
+    color: black;
+    text-decoration: underline;
+    width:100%;
+}
+
+.c_tl_msg.t2 .c_tl_hdr__subtitle { /* color schema for tile t2 */
+    font-size: 0.75rem;
+    color: black;
+    width:100%;
+}
+
+.c_tl_msg.t2 .c_tl_bdy__title { /* color schema for tile t2 */
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: black;
+    align-self:flex-start;
+    align-self: flex-start;
+    border-bottom: solid 1px #828a06;
+    line-height: 1.5rem;
+    width:100%;
+}
+
+.c_tl_msg.t2 .c_tl_bdy__content { /* color schema for tile t2 */
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: black;
+    align-self: flex-start;
+    width:100%;
+}
+
+.c_tl_msg.t2 .c_tl_ftr__title { /* color schema for tile t2 */
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: blue;
+    align-self: flex-start;
+    width:100%;
+}
+
+.c_tl_msg.t2 .carousel {
+    display:flex;
+    justify-content:center;
+}
+
+.c_tl_msg.t2 .carousel-inner {
+    flex: 0 0 85%;;
+    order:2;
+    padding:1px;
+}
+
+.c_tl_msg.t2 .carousel-control-prev {
+    flex: 0 0 6%;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+    order:1;
+}
+
+.c_tl_msg.t2 .carousel-control-next {
+    flex: 0 0 6%;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+    order:3;
+}
+
+/** tile t3 **/
+
+.c_tl_msg.t3  .c_tls_msg_bdy {
+    padding-top:1rem;
+}
+
+.c_tl_msg.t3  .c_msg__bubble {
+    border:none;
+}
+
+.c_tl_msg.t3 .c_tl__group__title {
+    text-align:center;
+    color:#f93986;
+    text-decoration: underline;
+    font-weight:600;
+}
+
+.c_tl_msg.t3 #tileCarouselControlID .carousel-item.active { /* the dot active, ensures that this style sheet is only applied to active carousel; carousel item is the container; without a carousel - cui_tl_msg_buuble is the container */
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+}
+
+.c_tl_msg.t3 .c_tl_itms {
+  flex: 0 0 23%;
+}
+
+.c_tl_msg.t3 .c_tl_hdr__title { /* color schema for tile t2 */
+    font-size: 0.60rem;
+    color: #f9317c;
+}
+
+.c_tl_msg.t3 .c_tl__img__thumbnail {
+    height: 4rem;
+  /*  object-fit: cover; images get chopped unecessarily.*/
+    border:none;
+}
+
+.c_tl_msg.t3 .carousel {
+    display:flex;
+    justify-content:space-between;
+    width:100%;
+}
+
+.c_tl_msg.t3 .carousel-inner {
+    flex: 0 0 85%;;
+    order:2;
+    padding:0.2rem;
+}
+
+.c_tl_msg.t3 .carousel-control-prev {
+    flex: 0 0 6%;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    order:1;
+    opacity:initial;
+}
+
+.c_tl_msg.t3 .carousel-control-next {
+    flex: 0 0 6%;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    order:3;
+    opacity:initial;
+}
+
+/** tile t4 - same css as t3 without carousel, since click is a modal**/
+
+.c_tl_msg.t4 .c_tl__group__title {
+    text-align:center;
+    color:#f93986;
+    text-decoration: underline;
+}
+
+.c_tl_msg.t4 #tileCarouselControlID .carousel-item.active { /* the dot active, ensures that this style sheet is only applied to active carousel; carousel item is the container; without a carousel - cui_tl_msg_buuble is the container */
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+}
+
+.c_tl_msg.t4 .c_tl__img__thumbnail {
+    height: 2rem;
+    object-fit: cover;
+    border:none;
+}
+
+.c_tl_msg.t4 .carousel {
+    display:flex;
+    justify-content:center;
+    width:100%;
+}
+
+/** tile t5 **/
+
+.tooltip.primary .tooltip-inner          { background-color:    #337ab7; }
+.tooltip.primary.top > .tooltip-arrow    { border-top-color:    #337ab7; }
+.tooltip.primary.right > .tooltip-arrow  { border-right-color:  #337ab7; }
+.tooltip.primary.bottom > .tooltip-arrow { border-bottom-color: #337ab7; }
+.tooltip.primary.left > .tooltip-arrow   { border-left-color:   #337ab7; }
+
+.c_tl_msg.t5 .c_msg__bubble {
+    border: 1px solid #80DEEA;
+    border-top: 2px solid #80DEEA;
+    background:white;
+}
+
+.c_tl_msg.t5 .c_cdo__section_hdr__title {
+    font-size:1.0rem;
+    text-shadow:initial;
+}
+
+.c_tl_msg.t5 .carousel-item.active { /* the dot active, ensures that this style sheet is only applied to active carousel; carousel item is the container; without a carousel - cui_tl_msg_buuble is the container */
+    align-items:normal; /* overrides bootstrap align itmes center - which messes up the height */
+}
+
+.c_tl_msg.t5 .c_tl_msg__field {
+    border-radius:2px;
+    display:flex;
+    flex: 0 0 100%;
+    min-height:14rem;
+    max-height:14rem;
+    padding:2px;
+    cursor:pointer;
+    flex-direction:column;
+}
+
+.c_tl_msg.t5 .c_tl_hdr__title { /* color schema for tile t1 */
+    font-size: 1.4rem;
+    color: black;
+/*    text-shadow: 1px 1px 2px #ca9393;
+    text-align: center; */
+    width:100%; /* ie does not inherit the width from the parent - so need to explicitly say so - else the text does not wrap */
+    line-height:0.8rem;
+    font-weight:900;
+}
+
+.c_tl_msg.t5 .c_tl_bdy__title { /* color schema for tile t1 */
+    font-weight: 700;
+    font-size: 1.0rem;
+    color: black;
+    width:100%;
+    line-height:0.8rem;
+}
+
+.c_tl_msg.t5 .c_tl_bdy__subtitle { /* color schema for tile t1 */
+    font-size: 0.9rem;
+    color: #378bf7;
+    width:100%;
+    line-height:0.8rem;
+}
+
+.c_tl_msg.t5 .c_tl_ftr_contain {
+    display:flex;
+    justify-content:space-between;
+}
+.c_tl_msg.t5 .c_tl_ftr__lhs__title1, .c_tl_msg.t5 .c_tl_ftr__rhs__title1 { /* color schema for tile t1 */
+    font-weight: 400;
+    font-size: 0.9rem;
+    width:100%;
+    line-height:0.8rem;
+}
+
+.c_tl_msg.t5 .c_tl_ftr__lhs__title2, .c_tl_msg.t5 .c_tl_ftr__rhs__title2 { /* color schema for tile t1 */
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: red;
+    width:100%;
+    line-height:0.8rem;
+}
+
+
+.c_tl_msg.t5 .c_tl_ftr__lhs__title1, .c_tl_msg.t5 .c_tl_ftr__lhs__title2 { /* color schema for tile t1 */
+    text-align:left;
+}
+
+.c_tl_msg.t5  .tileCenterFooterTitle1 {
+    text-align:center;
+}
+
+.c_tl_msg.t5 .c_tl_ftr__rhs__title1, .c_tl_msg.t5 .c_tl_ftr__rhs__title2 { /* color schema for tile t1 */
+    text-align:right;
+}
+
+.short__list_contain {
+    display:flex;
+    justify-content: flex-end;
+    margin:0;
+    height:12%;
+    font-weight: 600;
+    font-size:1.1rem;
+    color: #28628f;
+}
+
+.c_tl_msg.t5 .c_short__list__icon {
+  /*  height: 4rem; */
+    align-self: flex-end;
+   /* object-fit: cover; distorts the image */
+    border:none;
+    width:7%;
+    padding:0;
+}
+
+.c_tl_msg.t5 .c_bdy__title__icons {
+    /*  height: 4rem; */
+    align-self: flex-end;
+    /* object-fit: cover; distorts the image */
+    border:none;
+    width:25%;
+    padding:0;
+}
+
+
+
+.c_tl_msg.t5 .c_bdy__title__icons:hover {
+    color: #fff;
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+.c_tl_msg.t5 .c_bdy__title_contain {
+    display:flex;
+    font-size:0.9rem;
+}
+
+.c_tl_msg.t5 .c_tl__selected {
+
+    color: white;
+
+}
+
+.c_tl_msg.t5 .c_img__make__opaque {
+    opacity: 0.5;
+}
+
+.c_tl_msg.t5 .carousel {
+    display:flex;
+    justify-content:center;
+    width:100%;
+}
+
+
+.c_tl_msg.t5 .carousel-inner {
+    flex: 0 0 85%;;
+    order:2; /* flex order - inner is inbetween the previous carousel and the next carousel */
+    padding:0.2rem;
+}
+
+.c_tl_msg.t5 .carousel-inner .carousel-item.active {
+   /* min-width:15rem; */ /* important! if there is only 1 tile in the content, the tile does not become too narrow */
+    max-height: 14rem;
+    min-height: 14rem;
+}
+
+.c_tl_msg.t5 .carousel-inner {
+    flex: 0 0 85%;;
+    order:2;
+    padding:0.2rem;
+}
+
+.c_tl_msg.t5 .carousel-control-prev {
+    flex: 0 0 6%;
+    order:1;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+}
+
+.c_tl_msg.t5 .carousel-control-next {
+    flex: 0 0 6%;;
+    order:3;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+}
+
+.c_tl_msg.t5 .c_tl__qr_contain {
+
+    color: #007bff;
+    min-width: 30%;
+    min-height: 12px;
+    margin: 1px 1px 1px 1px;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(255,255,255);
+    padding: 2em 2em;
+    overflow: hidden;
+    border-top: 1px solid #dee2e6;
+}
+
+.c_tl_msg.t5 .c_bdy__title_contain p {
+    margin: 0 0;
+    flex: 0 0 25%;
+}
+/* from w3 schools */
+.attribute-type-value + .tooltip > .tooltip-inner {
+    background-color: #73AD21;
+    color: #FFFFFF;
+    border: 1px solid green;
+    padding: 15px;
+    font-size: 20px;
+}
+
+.attribute-type-value + .tooltip.bottom > .tooltip-arrow {
+    border-bottom: 5px solid blue;
+}
+
+.tooltip.bottom .tooltip-inner{
+    max-width:310px;
+    padding:3px 8px;
+    color:#fff;
+    text-align:center;
+    background-color:#245973;
+    border-radius:5px
+}
+
+.c_tl_msg.t5 .c_tl_msg__field:hover {
+    /* makes deslection confusing - red, blue, and white
+    color: rgb(255,255,255);
+    border: 1px solid rgb(10,91, 255);
+    background-color: rgb(77,136,255); */
+}
+
+.c_tl_msg.t5 .c_tl_msg__field.c_tl__selected { /* if some of the choices have been made in the past - tag them as prefilled */
+   /* border-color: blue; */
+    background-color: red;
+    color: white;
+}
+
+/** tile t6 **/
+
+.c_tl_msg.t6 .c_msg__bubble {
+    border:none;
+}
+.c_tl_msg.t6 .carousel-item.active { /* the dot active, ensures that this style sheet is only applied to active carousel; carousel item is the container; without a carousel - cui_tl_msg_buuble is the container */
+    align-items:normal; /* overrides bootstrap align itmes center - which messes up the height */
+}
+
+.c_tl_msg.t6 .c_tl_itms {
+    border: 1px solid #dee2e6;
+    border-radius:2px; /* 05-17 */
+    justify-content:normal;
+    padding-right:0;
+    padding-left:0;
+    flex:0 0 46%
+}
+
+.c_tl_msg.t6 .c_tl_hdr__title { /* color schema for tile t1 */
+    font-size: 0.90rem;
+    font-weight: 500;
+    color: white;
+    text-align: center;
+    background-color: #ec735f;
+    width:100%; /* ie does not inherit the width from the parent - so need to explicitly say so - else the text does not wrap */
+}
+
+.c_tl_msg.t6 .c_tl_itms.first_tl  {
+    border-bottom: 3px solid  #ec735f;;
+}
+
+.c_tl_msg.t6 .c_tl_itms.second_tl.second_tl  {
+    border-bottom: 3px solid #4f9c81;
+}
+
+.c_tl_msg.t6 .c_tl_itms.first_tl .c_tl_hdr__title{
+    background-color: #ec735f;
+}
+
+.c_tl_msg.t6 .c_tl_itms.second_tl.second_tl .c_tl_hdr__title {
+    background-color: #4f9c81;
+}
+.c_tl_msg.t6 .c_tl_bdy_bul { /* color schema for tile t1 */
+    font-size: 0.90rem;
+    color: black;
+    text-align: left;
+    width:100%;
+    line-height: 1.0rem;
+}
+
+.c_tl_msg.t6 .c_tl_ftr__title { /* color schema for tile t1 */
+    font-weight: 600;
+    font-size: 0.80rem;
+    text-align:center;
+    width:100%;
+}
+
+.c_tl_msg.t6 .c_tl__img__thumbnail {
+    height: 6rem;
+    object-fit: cover;
+    border:none;
+    width:100%;
+}
+
+.c_tl_msg.t6 .carousel {
+    display:flex;
+    justify-content:space-between;
+    width:100%;
+}
+
+
+.c_tl_msg.t6 #tileCarouselControlID .carousel-inner .carousel-item.active {
+    flex-wrap:nowrap;
+    display:flex;
+    justify-content:space-between;
+  /*  min-width:25rem; *//* important! if there is only 1 tile in the content, the tile does not become too narrow */
+}
+
+.c_tl_msg.t6 .carousel-inner {
+    flex: 0 0 85%;;
+    order:2;
+    padding:0.2rem;
+}
+
+.c_tl_msg.t6 .carousel-control-prev {
+    flex: 0 0 6%;;
+    opacity:initial;
+    order:1;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+}
+
+.c_tl_msg.t6 .carousel-control-next {
+     flex: 0 0 6%;;
+    opacity:initial;
+    order:3;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+}
+
+/** tile t7 **/
+
+.c_tl_msg.t7 .c_tl_itms {
+   /* border-radius:2px;
+    border: 1px solid #dee2e6;*/
+    box-shadow:none;
+    width:100%;
+}
+
+.c_tl_msg.t7 .c_tl_hdr__title { /* color schema for tile t1 */
+    font-size: 1.0rem;
+    /* color: black; */
+  /*  text-shadow: 1px 1px 2px #ca9393; */
+    text-align: center;
+   /* width:100%; *//* ie does not inherit the width from the parent - so need to explicitly say so - else the text does not wrap */
+    width: 96%;
+    border: solid 1px black;
+    color: white;
+    background-color: black;
+}
+
+.c_tl_msg.t7 .c_tl_bdy__title { /* color schema for tile t1 */
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: black;
+    text-align: center;
+    width:100%
+}
+
+.c_tl_msg.t7 .c_tl_ftr__title { /* color schema for tile t1 */
+   /* font-weight: 600;
+    color: blue;
+    */
+    font-size: 0.9rem;
+    text-align:center;
+    width:100%;
+}
+
+.c_tl_msg.t7 .c_tl__img__thumbnail {
+   /* object-fit: cover; */
+    border:none;
+    height:22rem; /* important controls the height of the slide */
+    width:96%;
+}
+
+.c_tl_msg.t7 .carousel {
+    display:flex;
+    justify-content:space-between;
+    width:100%;
+}
+
+.c_tl_msg.t7 .carousel-inner {
+    flex: 0 0 85%;;
+    order:2;
+    padding:0.2rem;
+}
+
+.c_tl_msg.t7 #tileCarouselControlID .carousel-item.active {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* center the slide */
+}
+
+.c_tl_msg.t7 .carousel-control-prev {
+    flex: 0 0 6%;;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+    order:1;
+}
+
+.c_tl_msg.t7 .carousel-control-next {
+    flex: 0 0 6%;;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+    order:3;
+}
+/* response tile - t8 - single choice only */
+
+.c_tl_resp.t8  .c_resp__bubble {
+    border-top: solid 1px #e9ecef;
+}
+
+.c_tl_resp.t8 .c_tl_resp__field {
+    border-radius:2px; /* 05-17 */
+    padding:2px;
+    cursor:pointer;
+    min-height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f8f8;
+    border: 1px solid rgb(225, 225, 225);
+    min-width:31%;
+    max-width:31%;
+    flex: 1 0;
+    /*  flex: 0 0 31%; */
+    box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
+    border: 1px solid #dee2e6;
+}
+
+.c_tl_resp.t8 p {
+    margin: 0 0;
+}
+
+.c_tl_resp.t8 .c_tl_resp__field:hover {
+    color: rgb(255,255,255);
+    border: 1px solid rgb(10,91, 255);
+    background-color: rgb(77,136,255);
+}
+
+.c_tl_resp.t8.c_tl_resp__field.c_tl__selected { /* if some of the choices have been made in the past - tag them as prefilled */
+  /*  border-color: blue; */
+    background-color: red;
+    color: white;
+}
+
+.c_tl_resp.t8 .c_tl__selected {
+    background-color: red;
+    color: white;
+}
+
+.c_tl_resp.t8 + #footer {
+    padding-top:1rem;
+}
+/* response tile - t9 - similar to t5 - multiple choce - response not msg  */
+
+.c_tl_resp.t9 .c_tls__resp_bdy {
+    flex-wrap:wrap;
+    display:flex;
+    justify-content:space-around;
+    background-color:white; /* creates a nice contrast to deleniate 3 areas - text msgs; tile msg content; and response object */
+    width:100%;
+}
+
+.c_tl_resp.t9 .carousel-item.active { /* the dot active, ensures that this style sheet is only applied to active carousel; carousel item is the container; without a carousel - cui_tl_msg_buuble is the container */
+    align-items:normal; /* overrides bootstrap align itmes center - which messes up the height */
+}
+
+
+.c_tl_resp.t9 .c_tl_resp__field {
+    background-color: #f8f8f8;
+    border-radius:2px; /* 05-17 */
+    padding:2px;
+    cursor:pointer;
+    min-height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(225, 225, 225);
+    min-width:31%;
+    max-width:31%;
+    flex: 1 0;
+  /*  flex: 0 0 31%; */
+}
+
+.c_tl_resp.t9 p {
+    margin: 0 0;
+}
+
+.c_tl_resp.t9 .c_tl_resp__field:hover {
+   /* color: rgb(255,255,255);
+    border: 1px solid rgb(10,91, 255);
+    background-color: rgb(77,136,255);  makes the hover on T9 confusing when deselecting*/
+}
+
+.c_tl_resp.t9 .c_tl_resp__field.c_tl__selected { /* if some of the choices have been made in the past - tag them as prefilled */
+  /*  border-color: blue; */
+    background-color: red;
+    color: white;
+}
+.c_tl_resp.t9 .c_tl__qr_contain {
+
+    color: #007bff;
+    min-width: 30%;
+    min-height: 12px;
+    margin: 1px 1px 1px 1px;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(255,255,255);
+    padding: 2em 2em;
+    overflow: hidden;
+    border-top: 1px solid #dee2e6;
+
+}
+.c_tl_resp.t9 .c_tl_hdr__title { /* color schema for tile t1 */
+    font-size: 0.75rem;
+    color: black;
+    text-shadow: 1px 1px 2px #ca9393;
+    text-align: center;
+    width:100%; /* ie does not inherit the width from the parent - so need to explicitly say so - else the text does not wrap */
+    line-height:0.8rem;
+}
+
+.c_tl_resp.t9 .c_tl_bdy__title { /* color schema for tile t1 */
+    font-weight: 500;
+    font-size: 0.6rem;
+    text-shadow: 1px 1px 2px #ca9393;
+    color: black;
+    text-align: center;
+    width:100%;
+    line-height:0.8rem;
+}
+
+.c_tl_resp.t9 .c_tl_ftr__title { /* color schema for tile t1 */
+    font-weight: 400;
+    font-size: 0.6rem;
+    color: blue;
+    text-align:center;
+    width:100%;
+    line-height:0.8rem;
+}
+
+.c_tl_resp.t9 .c_tl__img__thumbnail {
+    height: 4rem;
+    /* object-fit: cover; distorts the image */
+    border:none;
+    width:100%;
+}
+
+.c_tl_resp.t9 .c_tl__selected {
+    background-color: red;
+    color: white;
+}
+
+.c_tl_resp.t9 .c_img__make__opaque {
+    opacity: 0.5;
+}
+
+.c_tl_resp.t9 .carousel {
+    display:flex;
+    justify-content:center;
+    width:100%;
+}
+
+
+.c_tl_resp.t9 .carousel-inner {
+    flex: 0 0 85%;;
+    order:2; /* flex order - inner is inbetween the previous carousel and the next carousel */
+    padding:0.2rem;
+}
+
+.c_tl_resp.t9 #tileCarouselControlID .carousel-inner .carousel-item.active {
+    justify-content:space-between;
+    min-width:15rem; /* important! if there is only 1 tile in the content, the tile does not become too narrow */
+}
+
+/* .c_tl_msg.t9 .carousel-inner {
+    flex: 0 0 85%;;
+    order:2;
+    padding:0.2rem;
+} */
+
+.c_tl_resp.t9 .carousel-control-prev {
+    flex: 0 0 6%;;
+    order:1;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+}
+
+.c_tl_resp.t9 .carousel-control-next {
+    flex: 0 0 6%;;
+    order:3;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+}
+
+/* response tile - t10- single choice only - similar to t10 but bigger with background image; title, and sub title; each row has two units;*/
+
+.c_hdr.t10_hdr__adjustment, .c_hdr.t11_hdr__adjustment   {
+    top:3vh; /* move top a little lower, only for desktop and tablet */
+}
+
+#footer.hide_ftr, .c_cdo__section_hdr.hide__section_hdr {
+    display:none;
+   /* top:3vh;
+    max-height:55vh;
+    min-height:55vh; */
+
+}
+
+/*
+.c_tl_resp.t10  .c_resp__bubble {
+    border-top: solid 1px #e9ecef;
+} */
+
+.c_pmt_resp.pa .c_tl_resp__field .c_tl_hdr{
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin:0;
+}
+
+
+.c_tl_resp.t10 .c_tl_resp__field,
+.c_tl_resp.t11 .c_tl_resp__field,
+.c_pmt_resp.pa .c_tl_resp__field {
+    min-height:9rem;
+    border-radius:2px;
+    padding:2px;
+    cursor:pointer;
+    display: flex;
+    flex: 0 0 45%;
+    flex-direction:column;
+    align-items: center;
+    justify-content: space-between;
+    overflow:hidden;
+    border: 1px solid rgb(212, 205, 205);
+    box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
+   /* height: var(--t10_tl-height); not sure why needed; makes the tiles too tall*/ /* important - so in total occupies about 15vh of response stream;*/
+}
+
+
+.c_tl_resp.t10 .c_tl_resp__field.first_tl,
+.c_tl_resp.t11 .c_tl_resp__field.first_tl,
+.c_pmt_resp.pa .c_tl_resp__field.first_tl {
+    border-bottom: 3px solid #6798ec;
+}
+.c_tl_resp.t10 .c_tl_resp__field.second_tl,
+.c_tl_resp.t11 .c_tl_resp__field.second_tl,
+.c_pmt_resp.pa .c_tl_resp__field.second_tl {
+    border-bottom: 3px solid black;
+}
+.c_tl_resp.t10 .c_tl_resp__field.third_tl,
+.c_tl_resp.t11 .c_tl_resp__field.third_tl,
+.c_pmt_resp.pa .c_tl_resp__field.third_tl  {
+    border-bottom: 3px solid #fd7c66;
+}
+.c_tl_resp.t10 .c_tl_resp__field.fourth_tl,
+.c_tl_resp.t11 .c_tl_resp__field.fourth_tl,
+.c_pmt_resp.pa .c_tl_resp__field.fourth_tl {
+    border-bottom: 3px solid #80b7a4;
+}
+
+.c_tl_resp.t10 .c_tl_resp__field.first_tl,
+.c_tl_resp.t11 .c_tl_resp__field.first_tl,
+.c_pmt_resp.pa .c_tl_resp__field.first_tl {
+    background-color:white;;
+}
+
+.c_tl_resp.t10 .c_tl_resp__field.second_tl,
+.c_tl_resp.t11 .c_tl_resp__field.second_tl,
+.c_pmt_resp.pa .c_tl_resp__field.second_tl {
+    background-color: white;
+}
+
+.c_tl_resp.t10 .c_tl_resp__field.third_tl,
+.c_tl_resp.t11 .c_tl_resp__field.third_tl,
+.c_pmt_resp.pa .c_tl_resp__field.third_tl {
+    background-color:white;;
+}
+
+.c_tl_resp.t10 .c_tl_resp__field.fourth_tl,
+.c_tl_resp.t11 .c_tl_resp__field.fourth_tl,
+.c_pmt_resp.pa .c_tl_resp__field.fourth_tl {
+    background-color: white;
+}
+
+.c_tl_resp.t10, .c_tl_resp.t11, .c_pmt_resp.pa   {
+    margin: 0 0;
+}
+
+.c_tl_resp.t10 p.c_tl__title {
+     width:100%;
+     flex: 0 0 30%;
+     font-weight: 900;
+     font-size:var(--t10__title-font-size);
+     color: white;
+ }
+
+.c_tl_resp.t11 p.c_tl__title,
+.c_tl_resp.t11 p.c_tl__subtitle,
+.c_pmt_resp.pa p.c_tl__title,
+.c_pmt_resp.pa p.c_tl__subtitle {
+    width:100%;
+    flex: 0 0 2%;
+    font-weight: 900;
+    font-size:var(--t10__title-font-size);
+    color: white;
+}
+
+.c_tl_resp.t11 .c_tl__img__thumbnail, .c_pmt_resp.pa .c_tl__img__thumbnail {
+    border:none;
+    height:6rem;
+}
+
+.c_tl_resp.t10 .c_tl_resp__field.first_tl p.c_tl__title,
+.c_tl_resp.t11 .c_tl_resp__field.first_tl p.c_tl__title,
+.c_pmt_resp.pa .c_tl_resp__field.first_tl p.c_tl__title{
+    background-color: #477dda;
+ }
+
+.c_tl_resp.t10 .c_tl_resp__field.second_tl p.c_tl__title,
+.c_tl_resp.t11 .c_tl_resp__field.second_tl p.c_tl__title,
+.c_pmt_resp.pa .c_tl_resp__field.second_tl p.c_tl__title {
+    background-color:#676565;
+}
+
+.c_tl_resp.t10 .c_tl_resp__field.third_tl p.c_tl__title,
+.c_tl_resp.t11 .c_tl_resp__field.third_tl p.c_tl__title,
+.c_pmt_resp.pa .c_tl_resp__field.third_tl p.c_tl__title{
+    background-color:#ec5e47;
+}
+
+.c_tl_resp.t10 .c_tl_resp__field.fourth_tl p.c_tl__title,
+.c_tl_resp.t11 .c_tl_resp__field.fourth_tl p.c_tl__title,
+.c_pmt_resp.pa .c_tl_resp__field.fourth_tl p.c_tl__title {
+    background-color: #4f9c81;
+
+}
+
+
+.c_tl_resp.t10 p.c_tl__subtitle,
+.c_tl_resp.t11 p.c_tl__subtitle,
+.c_pmt_resp.pa p.c_tl__subtitle {
+    font-size:var(--t10__subtitle-font-size);
+    margin: 0 0;
+}
+
+.c_tl_resp.t10 .c_tl_resp__field.first_tl p.c_tl__subtitle {
+    color: #888888;
+}
+
+ .c_tl_resp.t11 .c_tl_resp__field.first_tl p.c_tl__subtitle,
+ .c_pmt_resp.pa .c_tl_resp__field.first_tl p.c_tl__subtitle {
+     color: #085ff5;
+     font-size:1.0rem;
+     font-weight:700;
+}
+
+ .c_tl_resp.t10 .c_tl_resp__field.second_tl p.c_tl__subtitle {
+    color: #888888;
+}
+
+ .c_tl_resp.t11 .c_tl_resp__field.second_tl p.c_tl__subtitle,
+.c_pmt_resp.pa .c_tl_resp__field.second_tl p.c_tl__subtitle {
+     color: #3c3939;
+     font-size:1.0rem;
+     font-weight:700;
+}
+
+.c_tl_resp.t10 .c_tl_resp__field.third_tl p.c_tl__subtitle {
+     color: #888888;
+ }
+
+.c_tl_resp.t11 .c_tl_resp__field.third_tl p.c_tl__subtitle,
+.c_pmt_resp.pa .c_tl_resp__field.third_tl p.c_tl__subtitle {
+    color: #d0361e;
+    font-size:1.0rem;
+    font-weight:700;
+}
+
+.c_tl_resp.t10 .c_tl_resp__field.fourth_tl p.c_tl__subtitle {
+    color: #888888;
+}
+
+ .c_tl_resp.t11 .c_tl_resp__field.fourth_tl p.c_tl__subtitle,
+ .c_pmt_resp.pa .c_tl_resp__field.fourth_tl p.c_tl__subtitle {
+    color: #2e8264;
+     font-size:1.0rem;
+     font-weight:700;
+}
+
+.c_tl_resp.t10 p.c_tl__cta {
+    font-size:var(--t10__cta-font-size);
+    align-self: flex-end;
+    margin: 0 0;
+   /* color: #ff8f73 *old scheme
+    color: #E74C3C; */
+    color: #0a5bff;
+    font-weight:600;
+}
+
+
+.c_tl_resp.t10 .c_tl_resp__field:hover,
+.c_tl_resp.t11 .c_tl_resp__field:hover,
+.c_pmt_resp.pa .c_tl_resp__field:hover {
+    color: rgb(255,255,255);
+   /* border: 1px solid rgb(10,91, 255);
+    background-color: rgb(77,136,255); */
+    background-color: #565e71;
+    border: 1px solid #7b8690
+
+}
+
+.c_tl_resp.t10 .c_tl_resp__field:hover p.c_tl__cta, .c_tl_resp.t10 .c_tl_resp__field:hover p.c_tl__subtitle {
+  /*  color: rgb(77,136,255); */
+     color:white;
+
+}
+
+
+.c_tl_resp.t11 .c_tl_resp__field:hover p.c_tl__cta, .c_tl_resp.t11 .c_tl_resp__field:hover p.c_tl__subtitle {
+    /*  color: rgb(77,136,255); */
+    color:white;
+
+}
+
+.c_tl_resp.t10 .c_tl_resp__field:hover p.c_tl__title, .c_tl_resp.t11 .c_tl_resp__field:hover p.c_tl__title {
+  background-color: #363C49
+
+}
+
+.c_tl_resp.t10.c_tl_resp__field.c_tl__selected,
+.c_tl_resp.t11.c_tl_resp__field.c_tl__selected,
+.c_pmt_resp.pa.c_tl_resp__field.c_tl__selected { /* if some of the choices have been made in the past - tag them as prefilled */
+    background-color: red;
+    color: white;
+}
+
+.c_tl_resp.t10 .c_tl__selected,
+.c_tl_resp.t11 .c_tl__selected,
+.c_pmt_resp.pa .c_tl__selected {
+    background-color: red;
+    color: white;
+}
+
+.c_tl_resp.t10 + #footer, .c_tl_resp.t11 + #footer, .c_pmt_resp.pa + #footer {
+    padding-top:1rem;
+}
+
+
+
+/** bullet message css ***/
+
+/** commmon stuff **/
+
+.c_bul_msg #bulletCarouselControlID .carousel-item.active {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between; /* style only for Tile T2; carousel item is the container for the msg_bdy_tl_itms so items get spaced */
+}
+
+.c_bul_msg  .carousel {
+    display:flex;
+    justify-content:center;
+    width:100%;
+}
+
+.c_bul_msg .carousel-control-prev {
+    flex: 0 0 6%;;
+    order:1;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+}
+
+.c_bul_msg .carousel-control-next {
+    flex: 0 0 6%;;
+    order:3;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+}
+
+.c_bul_msg .carousel-inner {
+    flex: 0 0 85%;;
+    order:2;
+    padding:0.2rem;
+}
+
+.c_bul_msg_bdy .carousel { /* make the carousel flex and order the columns */
+    display:flex;
+    width:100%;
+}
+
+.c_bul_itms {
+    display:flex;
+    justify-content:flex-start;
+    flex-direction:row;
+    align-items:flex-start;
+}
+
+.c_bul__first__column__string { /* this way you can optimize how the bullets spread out */
+    flex: 2 0 40%; /* first bullet will not shrink, BUT will grow if empty space; Grow MORE than second bullet; since 2 */
+    padding-right:1.0rem;
+}
+
+.c_bul__second__column__string {
+    flex: 1 0 30%; /* second bullet min width 30% - since NO shrink; max space whatever required */
+    padding-right:1.0rem;
+}
+
+.c_bul__third__column__string {
+
+    /*  flex: 1 1 30%; */
+    flex: 0 1 40%; /* let the third bullet shrink ONLY- so it will become small based on space left */
+}
+
+/** bwih **/
+
+.c_bul_msg.bwih .carousel {
+    display:flex;
+    align-items:center; /* so the card with the bullets are centered */
+    width:100%;
+}
+
+
+.c_bul_msg.bwih  .carousel-control-prev {
+    flex: 0 0 6%;;
+    order:1;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+}
+
+.c_bul_msg.bwih  .carousel-control-next {
+    flex: 0 0 6%;;
+    order:3;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+}
+
+.c_bul_msg.bwih .carousel-inner {
+    flex: 0 0 85%;;
+    order:2;
+    padding:0.2rem;
+}
+
+.c_bul_msg.bwih ul {
+    margin-bottom:0.5rem; /** browser has a standard ul margin of 1 rem - which is too much */
+    padding: 0;
+    padding-left: 1.0rem;
+    margin-left:0.5rem;
+}
+
+.c_bul_msg.bwih .c_bul__group_hdr{
+    color: black;
+    font-weight: 600;
+    padding:0.3rem;
+    flex: 1 0 100%;
+   /* text-shadow: rgb(202, 147, 147) 1px 1px 2px; */
+}
+
+.c_bul_msg.bwih ul li {
+   /* display:inline; */ /** IE messes up bullet alignments; this simply removes bullets from ul */
+}
+
+/** bwoh **/
+
+.c_bul_msg.bwoh .carousel {
+    display:flex;
+    align-items:center;
+    width:100%;
+    justify-content: space-between;
+}
+
+.c_bul_msg.bwoh  .carousel-control-prev {
+    flex: 0 0 6%;;
+    order:1;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+}
+
+.c_bul_msg.bwoh  .carousel-control-next {
+    flex: 0 0 6%;;
+    order:3;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+}
+
+.c_bul_msg.bwoh .carousel-inner {
+    flex: 0 0 85%;;
+    order:2;
+    padding:0.2rem;
+
+}
+
+.c_bul_msg.bwoh ul {
+    margin-bottom:0.5rem; /** browser has a standard ul margin of 1 rem - which is too much */
+  /*  padding:0.3rem; this hides bullets*/
+
+    margin-left: 0.5rem;
+    padding: 0;
+    padding-left: 1.0rem
+}
+
+.c_bul_msg.bwoh ul li {
+     display:inline;  /* turn off default bullets; and use ones below; IE messes up bullet alignments; this simply removes bullets from ul */
+}
+
+.c_bul_msg.bwoh ul li:before { /* customized bullets */
+    font-family:FontAwesome;
+    position: absolute;
+    left: 0;
+    color:black;
+    font-size:8px;
+    content:"\f111";
+}
+
+.c_bul_msg.bwoh-l ul li:before {
+    margin-top: 2px;
+    font-family: FontAwesome;
+    position: absolute;
+    left: 0;
+    font-size: 7px;
+    content: "\f111";
+    counter-increment: li;
+    background: #b1e2f7;
+    height: 2em;
+    width: 2em;
+    line-height: 2em;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 2em;
+
+}
+
+/** bwoh-p  a pop-up link**/
+
+.c_bul_msg.bwoh-p .c_bul__first__column__string { /* this way you can optimize how the bullets spread out */
+    flex: 1 0 ;
+    padding-right:1.0rem;
+}
+
+.c_bul_msg.bwoh-p .c_bul__second__column__string {
+    flex: 5 0; /* 5 times bigger than first and third bullet */
+    padding-right:1.0rem;
+    cursor: pointer; /* clickable */
+    color: #0085a3;
+}
+
+.c_bul_msg.bwoh-p .c_bul__text {
+    display:none; /* hide the pop-up text */
+}
+
+.c_bul_msg.bwoh-p .c_bul__third__column__string {
+
+    flex: 1 1; /* let the third bullet shrink ONLY- so it will become small based on space left */
+}
+
+.c_bul_msg.bwoh-p .carousel {
+    display:flex;
+    align-items:center;
+    width:100%;
+    justify-content: space-between;
+}
+
+.c_bul_msg.bwoh-p  .carousel-control-prev {
+    flex: 0 0 6%;;
+    order:1;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+}
+
+.c_bul_msg.bwoh-p  .carousel-control-next {
+    flex: 0 0 6%;;
+    order:3;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+}
+
+.c_bul_msg.bwoh-p .carousel-inner {
+    flex: 0 0 85%;;
+    order:2;
+    padding:0.2rem;
+
+}
+
+.c_bul_msg.bwoh-p ul {
+    margin-bottom:0.5rem; /** browser has a standard ul margin of 1 rem - which is too much */
+    margin-left: 0.5rem;
+    padding: 0;
+    padding-left: 1.0rem
+}
+
+.c_bul_msg.bwoh-p ul li {
+    display:inline;  /* turn off default bullets; and use ones below; IE messes up bullet alignments; this simply removes bullets from ul */
+}
+
+.c_bul_msg.bwoh-p ul li:before { /* customized bullets */
+    font-family:FontAwesome;
+    position: absolute;
+    left: 0;
+    color:black;
+    font-size:8px;
+    content:"\f111";
+}
+
+/* bwoh-l */
+
+
+.c_bul_msg.bwoh-l .carousel {
+  display:flex;
+  align-items:center;
+  width:100%;
+  justify-content: space-between;
+}
+
+.c_bul_msg.bwoh-l  .carousel-control-prev {
+  flex: 0 0 6%;;
+  order:1;
+  position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+  opacity:initial;
+}
+
+.c_bul_msg.bwoh-l  .carousel-control-next {
+  flex: 0 0 6%;;
+  order:3;
+  position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+  opacity:initial;
+}
+
+.c_bul_msg.bwoh-l .carousel-inner {
+  flex: 0 0 85%;;
+  order:2;
+  padding:0.2rem;
+}
+
+.c_bul_msg.bwoh-l ul {
+  margin-bottom:0.5rem; /** browser has a standard ul margin of 1 rem - which is too much */
+  margin-left: 0.5rem;
+ /* background:#f5f5f5; */
+  padding: 0;
+  padding-left: 1.5rem;
+  text-shadow: 1px 0px #b8b8f5;
+}
+
+.c_bul_msg.bwoh-l ul:nth-of-type(odd), .c_bul_msg.bwoh ul:nth-of-type(odd), .c_bul_msg.bwih ul:nth-of-type(odd), .c_bul_msg.bwoh-p ul:nth-of-type(odd) {
+    background:#f5f5f5;
+}
+
+.c_bul_msg.bwoh-l ul li {
+  display:inline;  /* turn off default bullets; and use ones below; IE messes up bullet alignments; this simply removes bullets from ul */
+}
+
+
+
+.c_bul_msg.bwoh-l ul li:before {
+  margin-top: 2px;
+  font-family: FontAwesome;
+  position: absolute;
+  left: 0;
+  font-size: 7px;
+  content: "\f111";
+  counter-increment: li;
+  background: #b1e2f7;
+  background:  #f9a092;
+  background: #dad4d3;
+  height: 2em;
+  width: 2em;
+  line-height: 2em;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 2em;
+}
+.c_bul_msg.bwoh-l .c_msg__bubble {
+  background:none;
+
+}
+.c_bul_msg.bwoh-l .c_bul__first__column__string {
+
+}
+
+/**** card css *****/
+
+/** common stuff for flipping two sided cards - for c4 and c2**/
+
+.c_cd_msg.c4 .frontside, .c_cd_msg.c2 .frontside {
+    position: relative;
+    -webkit-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    z-index: 2;
+    /*  margin-bottom: 0.75em;
+      width:100%; */
+}
+
+.c_cd_msg.c4 .backside, .c_cd_msg.c2 .backside {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    width:100%;
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -o-transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+    /*-webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+    -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+    box-shadow: 5px 7px 9px -4px rgb(158, 158, 158); */
+}
+
+.c_cd_msg.c4 .frontside, .c_cd_msg.c4 .backside {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: 1s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transition: 1s;
+    -moz-transform-style: preserve-3d;
+    -o-transition: 1s;
+    -o-transform-style: preserve-3d;
+    -ms-transition: 1s;
+    -ms-transform-style: preserve-3d;
+
+    transform-style: preserve-3d;
+
+}
+
+.c_cd_msg.c4 .card-flip , .c_cd_msg.c2 .card-flip  {
+    position:relative;
+}
+
+.c_cd_msg.c4 .card-flip .backside, .c_cd_msg.c2 .card-flip .backside {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    /*  -webkit-transform-style: preserve-3d;
+              transform-style: preserve-3d; */
+}
+
+.c_cd_msg.c4 .card-flip .frontside, .c_cd_msg.c2 .card-flip .frontside {
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    /*   -webkit-transform-style: preserve-3d;
+              transform-style: preserve-3d; */
+}
+
+.c_cd_msg.c4 .card-flip.flipped .backside, .c_cd_msg.c2 .card-flip.flipped .backside {
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+}
+
+.c_cd_msg.c4 .card-flip.flipped .frontside, .c_cd_msg.c2 .card-flip.flipped .frontside {
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+.c_cd_msg.c2 .frontside, .c_cd_msg.c2 .backside {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: 1s;
+  -webkit-transform-style: preserve-3d;
+  -moz-transition: 1s;
+  -moz-transform-style: preserve-3d;
+  -o-transition: 1s;
+  -o-transform-style: preserve-3d;
+  -ms-transition: 1s;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+
+}
+
+.c_flip__front_cd, .c_flip__back_cd { /* buttons to flip the front and the back */
+    width:auto; /* automatically adjust to the size of the text */
+    align-self:center;
+    font-size:0.6rem;
+}
+
+.c_flip__back_cd {
+    width:15%;
+}
+
+/** end of common stuff to flip cards */
+
+.c_front_cd_itms {
+    display:flex;
+    flex-direction:column;
+}
+
+.c_back_cd_itms {
+    display:flex;
+    justify-content:center;
+}
+.c_cd_msg.c4 .c_back_cd_itms {
+    padding:0;
+}
+.c_front_cd_itms.card-body {
+    padding:0.5rem;
+    background-color: #e2eef5;
+    background: linear-gradient(#e2eef5, white);
+
+} /* bootstrap card body has 1.25rem; this makes it thinner to conserve space */
+
+.c_front_cd_itms .c_lhs__rhs_ftr1__row, .c_front_cd_itms .c_lhs__rhs_ftr2__row {
+    margin-left:0;
+    margin-right:0;
+    display:flex;
+    flex-wrap:nowrap;
+    justify-content:space-between; /* puts one footer on extreme right and other one on extreme left */
+}
+
+
+/*** card c1 ***/
+
+.c_cd_msg.c1 .c_msg__bubble {
+  /* background: linear-gradient(#f9f2f2, white); */
+    background: linear-gradient(#e2eef5, white);
+    /*  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); */
+    box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
+    border: 1px solid #dee2e6;
+}
+
+.c_cd_msg.c1 .c_cd_bdy__title {
+    font-size:1.0rem;
+    color:black;
+    font-weight:600;
+    align-self:center;
+    text-align:center; /* important -- wrap around is also centered */
+
+}
+
+.c_cd_msg.c1 .c_cd_bdy__content {
+    font-size:1.0rem;
+    align-self:center;
+    width:85%;
+    color: black;
+    line-height:1.5rem;
+    padding-bottom:0.5rem;
+
+}
+
+.c_cd_msg.c1  .c_cd__lhs_ftr1 {
+    align-self:flex-start;
+    color: #0c4288;
+    font-size:0.75rem;
+    font-weight: 600;
+}
+
+.c_cd_msg.c1  .c_cd__lhs_ftr2 {
+    align-self:flex-start;
+    color: #0c4288;
+    font-size:0.75rem;
+    font-weight: 600;
+}
+.c_cd_msg.c1 .carousel {
+    display:flex;
+    align-items:center; /* so the card with the bullets are centered */
+    width:100%;
+}
+
+.c_cd_msg.c1 .carousel-inner {
+    flex: 0 0 85%;;
+    order:2;
+    padding:0.2rem;
+}
+
+.c_cd_msg.c1 .carousel-control-next {
+    flex: 0 0 6%;;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+    order:3;
+}
+
+.c_cd_msg.c1 .carousel-control-prev {
+    flex: 0 0 6%;;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+    order:1;
+}
+
+/*** card c2 ***/
+
+.c_cd_msg.c2  .c_cd_hdr__title { /* all titles should be centered */
+    align-self:center;
+    text-align:center;
+    color: black;
+    font-size:0.70rem
+}
+
+.c_cd_msg.c2 .c_cd_hdr__subtitle {
+    text-align:center;
+    color: black;
+    font-size:0.65rem
+}
+
+.c_cd_msg.c2 .c_cd_bdy__title__subtitle { /* container div for body title and subtitle */
+    display: flex;
+    flex-direction: column;
+}
+
+.c_cd_msg.c2 .c_cd_bdy__title {
+    font-size:1.0rem;
+    color:black;
+    font-weight:600;
+    align-self:flex-start;
+    text-align:left;
+}
+
+.c_cd_msg.c2 .c_cd_bdy__subtitle {
+    font-size:0.90rem;
+    color:black;
+    font-weight:600;
+    align-self:flex-start;
+    text-align:left;
+}
+
+.c_cd_bdy__title__subtitle::after { /* so that there is an underline to the head title */
+    border-bottom: solid 1px #e9ecef;
+    content: '';
+    display: block;
+    width: 15rem;
+}
+
+.c_cd_msg.c2 .c_cd_bdy__content {
+    font-size:0.85rem;
+    text-align: justify;
+    color: black;
+}
+
+.c_cd_msg.c2  .c_cd__lhs_ftr1 {
+    align-self:flex-start;
+    color: #0c4288;
+    font-size:0.75rem;
+}
+
+.c_cd_msg.c2  .c_cd__lhs_ftr2 {
+    align-self:flex-start;
+    color: #0c4288;
+    font-size:0.75rem;
+}
+
+.c_cd_msg.c2  .c_cd__rhs_ftr1 {
+    align-self:flex-end;
+    color: #0c4288;
+    font-size:0.75rem;
+}
+
+.c_cd_msg.c2  .c_cd__rhs_ftr2 {
+    align-self:flex-end;
+    color: #0c4288;
+    font-size:0.75rem;
+}
+
+.c_cd_msg.c2 .c_back_cd_itms {
+  flex: 0 0 auto; /* for ie, otherwise the columns hide the back button */
+}
+
+.c_cd_msg.c2 .c_cd__back__item {
+    flex: 0 1 45%; /* if there are 3 bios all will shrink proportionaitely, none will grow past 45% */
+}
+
+.c_cd_msg.c2 .c_cd__back_img {
+    border-radius: 50%; /* makes background image circular */
+    width:25%;
+  /*  height:25%; this way the imaage height is set to auto */
+}
+
+.c_cd_msg.c2 .c_cd__back__title { /* all titles should be centered */
+    align-self:center;
+    text-align:center;
+    color: black;
+    font-size:0.70rem
+}
+
+.c_cd_msg.c2 .c_cd__back__content {
+    text-align:justify;
+    color: black;
+    font-size:0.7rem;
+}
+
+.c_cd_msg.c2 .carousel {
+    display:flex;
+    align-items:center; /* so the card with the bullets are centered */
+    width:100%;
+}
+
+.c_cd_msg.c2 .carousel-inner {
+    flex: 0 0 85%;;
+    order:2;
+    padding:0.2rem;
+}
+
+.c_cd_msg.c2 .carousel-control-next {
+    flex: 0 0 6%;;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+    order:3;
+}
+
+.c_cd_msg.c2 .carousel-control-prev {
+    flex: 0 0 6%;;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+    order:1;
+}
+
+/*** card c3 ***/
+
+.c_cd_msg.c3 .card {/* unecessary border created by bootstrap */
+    border:none;
+}
+
+.c_cd_msg.c3 .c_cd_hdr__title { /* all titles should be centered */
+    align-self:center;
+    text-align:center;
+    color: black;
+    font-size:0.70rem
+}
+
+.c_cd_msg.c3 .c_cd_hdr__subtitle {
+    text-align:center;
+    color: black;
+    font-size:0.65rem
+}
+
+.c_cd_msg.c3 .c_cd_bdy__title__subtitle { /* container div for body title and subtitle */
+    display: flex;
+    flex-direction: column;
+}
+
+.c_cd_msg.c3 .c_cd_bdy__title {
+    font-size:1.0rem;
+    color:black;
+    font-weight:600;
+    align-self:flex-start;
+    text-align:left;
+}
+
+.c_cd_msg.c3 .c_cd_bdy__subtitle {
+    font-size:0.90rem;
+    color:black;
+    font-weight:600;
+    align-self:flex-start;
+}
+
+.c_cd_bdy__title__subtitle::after { /* so that there is an underline to the head title */
+    border-bottom: 1px solid #dee2e6;
+    content: '';
+    display: block;
+    width: 15rem;
+}
+
+.c_cd_msg.c3 .c_cd_bdy__content {
+    font-size:0.85rem;
+    text-align: justify;
+    color: black;
+}
+
+.c_cd_msg.c3 .c_front_cd_itms .c_cd__details_bul {
+    color:black;
+    font-size:0.85rem;
+}
+
+.c_cd_msg.c3 .c_front_cd_itms ul {
+    padding-left: 1.5em;
+    line-height: 1.2rem;
+    text-align: left;
+}
+
+.c_cd_msg.c3  .c_cd__lhs_ftr1 {
+    align-self:flex-start;
+   /* color: blue; */
+    font-size:0.75rem;
+    font-weight:600;
+}
+
+.c_cd_msg.c3  .c_cd__lhs_ftr2 {
+    align-self:flex-start;
+    /* color: blue; */
+    font-size:0.75rem;
+    font-weight:600;
+}
+
+.c_cd_msg.c3  .c_cd__rhs_ftr1 {
+    align-self:flex-end;
+    /* color: blue; */
+    font-size:0.75rem;
+    font-weight:600;
+}
+
+.c_cd_msg.c3  .c_cd__rhs_ftr2 {
+    align-self:flex-end;
+    /* color: blue; */
+    font-size:0.75rem;
+    font-weight:600;
+}
+
+.c_cd_msg.c3 .carousel {
+    display:flex;
+    justify-content:center;
+    width:100%;
+}
+
+.c_cd_msg.c3 .carousel-inner {
+    flex: 1 0 88%;;
+    order:2; /* flex order - inner is inbetween the previous carousel and the next carousel */
+    padding:1px;
+}
+
+
+.c_cd_msg.c3 .carousel-control-next {
+    flex: 0 0 6%;;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+    order:3;
+}
+
+.c_cd_msg.c3 .carousel-control-prev {
+    flex: 0 0 6%;;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+    order:1;
+}
+
+
+.c_msg__bubble span {
+    display: block;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: white;
+    border-radius: 50%;
+    width: 2.0rem;
+    height: 2.0rem;
+    background-size:cover;
+
+}
+
+.carousel-control-prev {
+    padding-left:2px; /* for some reason the left carousel icon touches the left edge */
+}
+
+.carousel-control-next-icon {
+
+
+      background-image: url(https://chalakh-bot-js.s3.us-east-2.amazonaws.com/images/arrow-right.png);
+}
+
+.carousel-control-prev-icon {
+
+    background-image: url(https://chalakh-bot-js.s3.us-east-2.amazonaws.com/images/arrow-left.png);
+}
+
+.carousel-control-prev-icon:hover{
+    color: rgb(255,255,255);
+    border: 1px solid rgb(10,91, 255);
+
+    background-image: url(https://chalakh-bot-js.s3.us-east-2.amazonaws.com/images/hover-left-arrow.png);
+    background-size:cover;
+   /* background-image:none;
+     background-color: rgb(77,136,255);*/
+}
+
+ .carousel-control-next-icon:hover{
+    color: rgb(255,255,255);
+    border: 1px solid rgb(10,91, 255);
+
+    background-image: url(https://chalakh-bot-js.s3.us-east-2.amazonaws.com/images/hover-right-arrow.png);
+    background-size:cover;
+
+}
+
+/** c4  **/
+
+.c_cd_msg.c4 .c_cd_msg_bdy {
+  flex: 0 0 auto; /* need it for Internet Explorer - else the image container div becomes too long */
+  width:100%;
+}
+
+.c_cd_msg.c4 .c_front_cd_itms {
+  flex: 0 0 auto; /* need it for Internet Explorer - else the image container div becomes too long */
+}
+
+.c_cd_msg.c4 .c_cd_hdr__title { /* all titles should be centered */
+    align-self:center;
+    text-align:center;
+    color: black;
+    font-size:0.70rem
+}
+
+.c_cd_msg.c4 .c_cd_hdr__subtitle {
+    text-align:center;
+    color: black;
+    font-size:0.65rem
+}
+
+.c_cd_msg.c4 p {
+  flex: 0 0 auto; /* need it for Internet Explorer - else the image container div becomes too long */
+    font-size:0.7rem;
+}
+
+.c_cd_msg.c4 .card {
+    border:none;
+    background-color:#e2eef5;
+    background: linear-gradient(#e2eef5, white);
+
+
+}
+
+.c_cd_msg.c4 .c_cd__front_img {
+    border-radius: 50%; /* makes background image circular */
+    width:30%;
+   /* height:25%; height is set to auto  - so that aspect ratio is maintained*/
+}
+
+.c_cd_msg.c4 .c_cd_bdy__title {
+    font-size:1.0rem;
+    color:blue;
+    font-weight:600;
+    align-self:center;
+}
+
+.c_cd_msg.c4 .c_cd_bdy__subtitle {
+    font-size:0.90rem;
+    color:blue;
+    font-weight:600;
+    align-self:center;
+}
+
+.c_cd_msg.c4 .c_cd__back__item {
+    flex: 0 1 45%; /* if there are 3 bios all will shrink proportionaitely, none will grow past 45% */
+}
+
+.c_cd_msg.c4 .c_cd__back_img {
+    border-radius: 50%; /* makes background image circular */
+    width:25%;
+   /* height:25%; - set it to auto so that aspect ratio is maintained */
+}
+
+.c_cd_msg.c4.c_cd__back__title { /* all titles should be centered */
+    align-self:center;
+    text-align:center;
+    color: black;
+    font-size:0.70rem
+}
+
+.c_cd_msg.c4 .c_cd__back__content {
+    text-align:justify;
+    color: black;
+    font-size:0.7rem;
+}
+
+.c_cd_msg.c4 .carousel {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+}
+
+.c_cd_msg.c4 .carousel-inner {
+    flex: 0 0 85%;;
+    order:2;
+    padding:0.2rem;
+}
+
+.c_cd_msg.c4 .carousel-control-next {
+    flex: 0 0 6%;;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+    order:3;
+}
+
+.c_cd_msg.c4 .carousel-control-prev {
+    flex: 0 0 6%;;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+    order:1;
+}
+
+
+
+/** audio video combined widget - basically same style sheet - just change video or audio to media
+
+ */
+
+/**** audio video thumbnail and full size css ***/
+
+/* th and fs common stuff */
+
+.c_media_msg.th #c_media_contain, .c_media_msg.fs #c_media_contain  {
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:column;
+}
+
+.c_media_msg.th .c_video__descriptor, .c_media_msg.fs .c_video__descriptor   {
+    display:flex;
+    width:100%;
+    flex-direction:column;
+  /*  background-color: #fff; */
+    background-clip: border-box;
+    border-radius: .25rem;
+    padding:0; /* resets the bootstrap column padding */
+}
+
+.c_media_msg.th .c_audio__descriptor, .c_media_msg.fs .c_audio__descriptor   {
+    display:flex;
+    width:100%;
+    flex-direction:column;
+   /* background-color: #fff;*/
+    background-clip: border-box;
+    border-radius: .25rem;
+    padding:0; /* resets the bootstrap column padding */
+}
+
+.c_media_msg.th .c_video__descriptor a, .c_media_msg.fs .c_video__descriptor a { /* so that user can point to anywhere in the thumbnail */
+    cursor:pointer
+}
+
+.c_media_msg.th .c_media__call__to__action, .c_media_msg.fs .c_media__call__to__action  {
+    display:flex;
+    justify-content:flex-end;
+}
+
+/*** media th  **/
+
+.c_media_msg.th .c_media__call__to__action .btn {
+    font-size:0.6rem;
+}
+
+.c_media_msg.th .c_media__title{
+    font-weight:600;
+    color:black;
+    font-size:0.75rem;
+}
+
+.c_media_msg.th .c_media__subtitle{
+    font-weight:600;
+    color:black;
+    font-size:0.70rem;
+}
+
+.c_media_msg.th .c_lhs__rhs_ftr1__row, .c_media_msg.th .c_lhs__rhs_ftr2__row {
+    display:flex;
+    justify-content:space-between; /* puts one footer on extreme right and other one on extreme left */
+}
+
+.c_media_msg.th .c_lhs_ftr1, .c_media_msg.th .c_lhs_ftr2 {
+    color:blue;
+    font-size:0.6rem;
+}
+
+.c_media_msg.th .c_rhs_ftr1, .c_media_msg.th .c_rhs_ftr2 {
+    text-align:right;
+    color:blue;
+    font-size:0.6rem;
+}
+
+
+/* media fs */
+
+.c_media_msg.fs .c_media__call__to__action .btn {
+    font-size:0.90rem;
+    padding:5px 15px;
+}
+
+.c_media_msg.fs .c_media__title{
+    font-weight:600;
+    color:black;
+    font-size:1.0rem;
+}
+
+.c_media_msg.fs .c_media__subtitle{
+    font-weight:500;
+    color:black;
+    font-size:0.9rem;
+}
+
+.c_media_msg.fs .c_lhs__rhs_ftr1__row, .c_media_msg.fs .c_lhs__rhs_ftr2__row {
+    display:flex;
+    justify-content:space-between; /* puts one footer on extreme right and other one on extreme left */
+}
+
+.c_media_msg.fs .c_lhs_ftr1, .c_media_msg.fs .c_lhs_ftr2 {
+    /* color:blue; */
+    font-size:0.9rem;
+    /* font-weight:600; */
+}
+
+.c_media_msg.fs .c_rhs_ftr1, .c_media_msg.fs .c_rhs_ftr2 {
+
+    /* color:blue; */
+    font-size:0.9rem;
+    /* font-weight:600; */
+}
+
+.c_media_msg.fs .carousel {
+    display:flex;
+    justify-content:space-between;
+    width:100%;
+}
+
+.c_media_msg.fs  .carousel-inner {
+    flex: 0 0 85%;;
+    order:2;
+    padding:0.2rem;
+}
+
+.c_media_msg.fs .carousel-control-prev {
+    flex: 0 0 6%;;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+    order:1;
+}
+
+.c_media_msg.fs .carousel-control-next {
+    flex: 0 0 6%;;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+    order:3;
+}
+
+.c_video__media__object  {
+    display:none;
+}
+
+#c_video__object {
+    width: 100%;
+    height: auto;
+}
+
+
+#c_audio__object {
+    width: 100%;
+    height: auto;
+}
+
+/**** payment bubble css ***/
+
+/* payment amount */
+
+.c_pmt_resp__field { /* jazz up the response tile */
+    white-space:pre-wrap;
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 1px;
+    background:  #ecf0f5;
+    color: black;
+    font-size: 1.0rem;
+    font-weight: 500;
+    box-shadow: 0 3px 3px rgba(0,0,0,.14);
+    cursor:pointer;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.5;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.c_pmt_resp.pa, .c_pmt_resp.pm, .c_pmt_resp.bi, .c_pmt_resp.pp {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+}
+
+.c_pmt_resp.pa #c_pmt__amount_contain {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-around;
+    width:80%;
+}
+
+.c_pmt_resp__field {
+    border-color:rgba(10, 91, 255, 0.83);
+}
+/* payment type - part of payment amount - one time or monthly */
+
+.c_pmt_resp.pa #c_pmt__type_contain {
+    display:flex;
+    flex-wrap:wrap;
+    flex: 0 0 60%;
+    justify-content:space-around;
+}
+
+#c_pmt__type_contain .c_pmt_resp__field, #c_pmt__amount_contain .c_pmt_resp__field {
+    flex: 0 0 35%;
+    border-color:rgba(10, 91, 255, 0.83);
+    background-color: white
+}
+
+#c_pmt__type_contain .c_pmt_resp__field.c_pmt__type__selected {
+    background-color: #2d97f3;
+    color:white;
+}
+
+#c_pmt__type_contain .c_pmt_resp__field {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:3.5rem;
+    border-radius:5px;
+}
+
+/** payment dollar choices */
+#c_pmt__amount_contain .c_pmt_resp__field {
+    flex: 0 1 15%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:3rem;
+    border-radius:4px;
+
+}
+
+#c_pmt__amount_contain .c_pmt_resp__field p, #c_pmt__type_contain .c_pmt_resp__field p {
+   margin:0;
+
+}
+
+#c_pmt__other__choice_contain.hide__class {
+    display:none;
+}
+
+#c_pmt__other__choice_contain .c_form__input__field {
+    min-width:auto;
+    margin-left:1rem;
+}
+
+#c_pmt__other__choice_contain {
+    display:flex;
+    flex: 0 0 30%;
+    align-items:flex-end;
+}
+
+#c_pmt__amount_contain .c_pmt_resp__field.c_pmt__amount__selected {
+    background-color: red;
+    color: white;
+
+}
+
+#payment-pa-bi-pp { /* 05-14 replaced by bootstrap "form-inline" for two fields; and "form" for more than four fields; */
+    flex-wrap:wrap;
+    display:flex;
+    justify-content:space-around;
+    padding-top:1rem;
+    border: 1px solid #9c9999;
+    border-radius: 5px;
+    margin: 1rem;
+} /* this helps center and align the form */
+
+#payment-pa-bi-pp label {
+    display:block;
+    margin-bottom:5%;
+    text-align:left;
+    color:red;
+    font-size:0.8rem;
+}
+
+#payment-pa-bi-pp input[type="text"], #payment-pa-bi-pp input[type="email"], #payment-pa-bi-pp input[type="tel"] { /* 05-14 */
+    border-bottom: 1px solid; /* used to be black */
+    border-color: rgb(162, 98, 236);
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-radius: 0;
+    max-width:90%; /* controls the width of the input area for form fields */
+    min-width:90%; /* 90 % is of the bootstrap column allocated */
+    color:blue;
+    padding-left: 0px! important; /* bootstrap adds padding that messes alignment. */
+    text-align:center;
+}
+
+.c_pmt__input__field { /* important */
+    box-sizing:initial;
+    font-size:1.0rem;
+}
+/* common qr buttons for bi, pp and pa */
+
+.c_bi__qr_btn.btn,  .c_pp__qr_btn.btn { /* jazz up the buttons for ALL 3 response types; tile response different jazzing up*/
+    border-radius: 20px;
+    font-size: 1.0rem;
+    font-weight: 500;
+    box-shadow: 0 1px 1px rgba(0,0,0,.14);
+    color: rgb(10, 91, 255);
+    border: 1px solid rgb(10, 91, 255);
+    background-color: rgb(255, 255, 255);
+    text-shadow: none;
+    padding: 0.5rem;
+    max-width: none;
+    min-height:2.5rem; /* this way if onebutton has lots of text, the other does not look puny */
+    white-space: pre-wrap;
+
+}
+
+ .c_pa__qr_btn.btn:hover, .c_bi__qr_btn.btn:hover,  .c_pp__qr_btn.btn:hover {
+    color: rgb(255,255,255);
+    border: 1px solid rgb(10,91, 255);
+    background-color: rgb(77,136,255);
+}
+
+.c_pa__qr_contain, .c_bi__qr_contain,  .c_pp__qr_contain{
+    display:flex;
+    justify-content:space-around;
+    width:100%; /* this way the buttons start in a new row two buttons for all except conversion probe */
+    padding: 1.5em 2em;
+    overflow: hidden;
+}
+
+.c_pa__qr_contain {
+    border-top: solid 1px #e9ecef
+}
+
+.c_pa__qr_btn_contain, .c_bi__qr_btn_contain,  .c_pp__qr_btn_contain {
+    display:flex;
+    justify-content:center;
+}
+
+.c_pmt__qr_btn  {
+    box-sizing:initial;
+    max-width:55%;
+    min-width:55%;
+    align-self:center; /* this positions the button bottom at the same level as the input field; */
+    text-align:center; /* the c_survey__input__field text is aligned left */
+    padding-left:1.25rem; /* this it to make the padding for survey-input fields and submit button (which is b.s) same width */
+}
+
+
+.c_pmt_resp input[type=checkbox], .c_survey_resp input[type=radio]  {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-top:0;
+
+} /* make the checkboxes and radio buttons responsive */
+
+/*** payment processing **/
+#c_pmt__include__processing_contain {
+    display:flex;
+    flex: 0 0 85%;
+    margin-top:0.5rem;
+}
+
+#payment-pa-bi-pp #c_pmt__include__processing_contain label {
+    display:block;
+    margin-bottom:5%;
+    text-align:left;
+    vertical-align:middle;
+    color:blue;
+    font-size:0.8rem;
+    padding-left:0.5rem;
+}
+
+/*** payment method **/
+
+.c_pmt_resp.pm #c_pmt__method_contain {
+    display:flex;
+    flex-wrap:wrap;
+    flex: 0 0 80%;
+    justify-content:space-around;
+}
+
+#c_pmt__method_contain .website-payment-button, #c_pmt__method_contain .credit-card-payment-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.0rem;
+    border-radius: 5px;
+
+}
+
+#c_website_pmt_contain .website-payment-button, #c_credit_cd_contain .credit-card-payment-button {
+    background-color: #2d97f3;
+    color: white;
+    cursor:pointer;
+
+}
+
+#c_digital__wallet_contain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.5rem;
+    border-radius: 5px;
+}
+
+.c_wallet_pmt__divider {
+    flex: 0 0 80%;
+    display:flex;
+    align-items:center;
+}
+
+.c_wallet_pmt__divider hr {
+
+    flex: 0 0 30%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color:#ded9d9;
+    opcaity: 0.5;
+}
+
+.c_wallet_pmt__divider .divider_label {
+    flex: 0 0 30%;
+    font-size:0.8rem;
+    color:grey;
+    vertical-align: center;
+}
+
+
+#c_digital__wallet_contain  .img-thumbnail {
+    border: none;
+    background-color:transparent;
+}
+
+#c_digital__wallet_contain {
+    display:flex;
+    flex: 0 0 80%;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+}
+.wallet-button {
+    flex: 0 1 30%;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    cursor:pointer;
+}
+
+
+#paypal-button, #visa-button, #masterpass-button {
+    flex: 0 0 50%;
+    white-space: pre-wrap;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* this is to override minimum settings that paypal ahs in pixels - which makes paypal bigger than other wallet buttons */
+#paypal-button .paypal-button.paypal-button-label-pay {
+    height:auto;
+    min-width:0;
+}
+
+#paypal-button .zoid-outlet {
+    height:auto;
+    min-width:0;
+}
+
+#c_digital__wallet_contain .wallet-button:hover, #c_credit_cd_contain .credit-card-payment-button:hover, #c_website_pmt_contain .website-payment-button:hover {
+    background-color: #9e9e9e1c;
+    color: #8c8989;
+    cursor: pointer;
+    border: 1px solid rgba(158, 158, 158, 0.22);
+}
+
+
+
+/* class to break divs into new lines - since width is 100% */
+.break {
+    flex-basis: 80%;
+    height: 0;
+    border-bottom: solid 1px #ded9d9;
+}
+
+#c_pmt__method_contain p {
+    margin:0;
+    text-align:left;
+
+}
+
+.c_pmt_disclaimer_contain p {
+    color: #b1aaaa;
+
+}
+
+.c_pmt_disclaimer_contain p {
+   font-size:0.7rem;
+}
+
+
+
+/**** doc thumbnail and full size css ***/
+
+/* th and fs common stuff */
+
+.c_doc_msg.th #c_doc__media_contain, .c_doc_msg.fs #c_doc__media_contain  {
+  display:flex;
+  flex-wrap:wrap;
+    flex-direction:column;
+}
+
+.c_doc_msg.th .c_doc__descriptor, .c_doc_msg.fs .c_doc__descriptor   {
+  display:flex;
+  width:100%;
+  flex-direction:column;
+}
+
+.c_doc_msg.th .c_doc__descriptor, .c_doc_msg.fs .c_doc__descriptor   {
+ /* background-color: #fff; */
+  background-clip: border-box;
+  border-radius: .25rem;
+  padding:0.5rem;
+}
+
+.c_doc_msg.th .c_doc__descriptor a, .c_doc_msg.fs .c_doc__descriptor a { /* so that user can point to anywhere in the thumbnail */
+  cursor:pointer;
+}
+
+.c_doc_msg.th .c_doc__call__to__action, .c_doc_msg.fs .c_doc_contain  {
+  display:flex;
+  justify-content:space-between;
+}
+
+/*** doc th  **/
+
+.c_doc_msg.th .c_doc__call__to__action .btn {
+  font-size:0.6rem;
+}
+
+.c_doc_msg.th .c_doc__title{
+  font-weight:600;
+  color:black;
+  font-size:0.75rem;
+}
+
+.c_doc_msg.th .c_doc__subtitle{
+  font-weight:500;
+  color:black;
+  font-size:0.70rem;
+}
+
+.c_doc_msg.th .c_lhs__rhs_ftr1__row, .c_doc_msg.th .c_lhs__rhs_ftr2__row {
+  display:flex;
+  justify-content:space-between; /* puts one footer on extreme right and other one on extreme left */
+}
+
+.c_doc_msg.th .c_lhs_ftr1, .c_doc_msg.th .c_lhs_ftr2 {
+  color:blue;
+  font-size:0.6rem;
+}
+
+.c_doc_msg.th .c_rhs_ftr1, .c_doc_msg.th .c_rhs_ftr2 {
+  text-align:right;
+  color:blue;
+  font-size:0.6rem;
+}
+
+
+/* doc fs */
+
+.c_doc_msg.fs .c_doc__title{
+  font-weight:600;
+  color:blue;
+  font-size:1.1rem;
+}
+
+.c_doc_msg.fs .c_doc__subtitle{
+  font-weight:500;
+  color:black;
+  font-size:0.90rem;
+}
+
+.c_doc_msg.fs .c_doc__subtitle::after { /* so that there is an underline to the head title */
+  border-bottom: solid 1px #9c9797;
+  content: '';
+  display: block;
+  width: 15rem;
+}
+
+.c_doc_msg.fs .c_description__text{
+    color:black;
+    font-size:0.85rem;
+    line-height: 1.2rem;
+}
+
+.c_doc__descriptor ul {
+    padding-left: 1.5em;
+    line-height: 1.2rem
+}
+
+.c_doc_msg.fs .c_doc__details_bul{
+    color:black;
+    font-size:0.85rem;
+}
+
+.c_doc_msg.fs .c_docs_contain {
+  display:flex;
+  flex-direction:column;
+}
+
+.c_doc_msg.fs .c_doc_contain .btn {
+
+  padding:.075rem .75rem;
+  font-size: 0.8rem;
+
+  border: 1px solid rgb(10, 91, 255);
+  /* background-color: rgb(255, 255, 255);
+  color: rgb(10, 91, 255); */
+  background-color:blue;
+  color:white;
+  max-height:1.5rem;
+  min-height:1.5rem;
+}
+
+.c_doc_msg.fs .c_doc_contain .btn:hover {
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(10, 91, 255);
+    background-color: rgb(77, 136, 255);
+}
+.c_doc_msg.fs .c_doc__src__title {
+
+  color: #3047EC;
+  font-size:0.8rem;
+
+}
+
+.c_doc_msg.fs .carousel {
+    display:flex;
+    justify-content:space-between;
+    width:97%; /* something messes the right hand side margin */
+}
+
+.c_doc_msg.fs .carousel-inner {
+    flex: 0 0 85%;
+    order:2; /* flex order - inner is inbetween the previous carousel and the next carousel */
+    padding:0.2rem;
+}
+
+.c_doc_msg.fs .carousel-control-prev {
+    flex: 0 0 6%; /* over rides bs auto which messes up the alignment of the arrows*/
+    order:1;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    opacity:initial;
+}
+
+.c_doc_msg.fs .carousel-control-next {
+  flex: 0 0 6%;; /* over rides bs auto which messes up the alignment of the arrows*/
+  order:3;
+  position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+  opacity:initial;
+}
+
+
+/* image th css */
+
+.c_img_msg.th .c_cdo__section_hdr {
+    text-align:center;
+}
+
+.c_img_msg.th .c_img__thumbnail {
+    padding-right:5px; /* so photos are not too squished to each other */
+    padding-left:5px;
+   /* flex: 0 0 23%; this way cannot cary imgs for landscape and portrait mobile *//* 25% works in all browsers other than IE; four images per row, padding above creates the spacing between divs */
+    display: flex;
+    flex-direction:column; /* so caption can appear below the img thumbnail */
+
+}
+
+.c_img_msg.th .c_img__caption {
+  font-size: 0.7rem;
+  text-align: center;
+  /*color: blue; */
+ /* font-weight: 600; */
+
+}
+.c_img_msg.th .c_img__thumbnail_contain {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: flex-start; /* this way the images are aligned lhs of the container */
+    padding-top:1rem;
+}
+
+.c_img_msg.th .c_img__thumbnail .img-thumbnail { /* bootstrap class */
+    border-color: #B2B2FF;
+    /* height:30%;  flex box stretches the image hieght to its natural height. https://stackoverflow.com/questions/37609642/why-does-flexbox-stretch-my-image */
+    align-self:center; /* this will maintain the aspect ratio of the image based on the original width */
+    padding: .25rem; /* so that the image has a slightly fatter white space border */
+    width:100%; /* for some reason in IE need to specify that image is 100%; it does not inherit it from above that says image div is 25% */
+    flex: 0 0 auto; /* important! else the images in IE being too tall */
+}
+
+.c_img_msg.th .hide__class {
+    display:none;
+}
+
+    /*** MODALS ***/
+
+/*** audio modal **/
+
+.c_audio_mdl .modal { /* boot strap col-12 adds padding - so the modal does not cover the underlying stuff */
+    padding:0;
+}
+
+.c_audio_mdl .modal-header {
+    flex-direction:row; /* bootstrap spec over ridden */
+    padding-bottom:0;
+    padding-top:0.5rem;
+    align-self:flex-end; /* so that the close button is to the far right */
+    border-bottom:none; /* boot strap adds border, remove it */
+}
+
+.c_audio_mdl  .modal-body {
+  /*  background: linear-gradient(#f9f2f2, white); */
+    min-height: 20rem; /* important! determines the height of the modal that pops up when hit play */
+    min-width: 15rem;
+    display:flex;
+    flex-direction:column;
+    flex: 0 0 auto; /* not sure why this works but else the heigt of the div enclosing the image becomes too big */
+    justify-content:center; /* so image is centered */
+}
+
+
+
+.c_audio_mdl .c_mdl__download__gif {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 5%;
+  width: 100%;
+}
+
+.c_mdl__download__gif.c_mdl__download__gif__hide {
+    display:none;
+}
+
+.c_audio_mdl .c_mdl__download__gif .img-fluid {
+  width:20%;
+
+}
+
+.c_audio_mdl #c_mdl__title h6 {
+    flex: 0 0 85%;
+    color: blue;
+    font-size: 0.9rem;
+
+}
+
+.c_audio_mdl .c_lhs__rhs_ftr1__row, .c_audio_mdl .c_lhs__rhs_ftr2__row {
+    display:flex;
+    justify-content:space-between;
+
+}
+
+.c_audio_mdl .c_lhs_ftr1, .c_audio_mdl .c_lhs_ftr2 {
+    color: blue;
+    font-size: 0.75rem;
+}
+
+.c_audio_mdl .c_rhs_ftr1, .c_audio_mdl .c_rhs_ftr2 {
+    color: blue;
+    font-size: 0.75rem;
+}
+
+.c_audio_mdl .img-thumbnail {
+    border:none;
+    width:100%;
+    display:flex;
+    justify-content:flex-start;
+}
+
+.c_audio_mdl .c_close__audio_mdl {
+    color:blue;
+    font-size: 0.8rem;
+    flex: 0 1 10%;
+   /* font-weight: 600; */
+}
+
+.c_audio_mdl #audio__timer {
+    color:red;
+    font-size:0.8rem;
+}
+.c_audio_mdl .carousel {
+    display:flex;
+    justify-content:center;
+    width:100%;
+}
+
+.c_audio_mdl  .carousel-inner {
+    flex: 0 0 85%;;
+    order:2;
+    background-color:white; /* important! this way the stuff at the back is hidden */
+    opacity:1;
+    padding:0.2rem;
+}
+
+.c_audio_mdl .carousel-control-prev {
+    flex: 0 0 6%;; /* over rides bs auto which messes up the alignment of the arrows*/
+    order:1;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    background-color:white;
+    opacity:1;
+    border: 1px solid #dee2e6;
+    border-right:none;
+}
+
+.c_audio_mdl .carousel-control-next {
+    flex: 0 0 6%;; /* over rides bs auto which messes up the alignment of the arrows*/
+    order:3;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    background-color:white;
+    opacity:1;
+    border: 1px solid #dee2e6;
+    border-left:none;
+}
+
+
+
+/** video modal **/
+
+
+.c_video_mdl .modal { /* boot strap col-12 adds padding - so the modal does not cover the underlying stuff */
+    padding:0;
+}
+
+.c_video_mdl .modal-header {
+    flex-direction:row; /* bootstrap spec over ridden */
+    padding-bottom:0;
+    padding-top:0.5rem;
+}
+
+.c_video_mdl .img-thumbnail {
+    border:none;
+    width:100%;
+    display:flex;
+    justify-content:flex-start;
+}
+
+
+.c_video_mdl #c_mdl__title h6 {
+    flex: 0 0 85%;
+    color: blue;
+    font-size: 0.9rem;
+}
+
+.c_video_mdl .c_close__video_mdl {
+    color:blue;
+    font-size: 0.8rem;
+    flex: 0 1 10%;
+   /* font-weight: 600; */
+}
+
+.c_video_mdl .modal-body {
+  display:flex;
+  justify-content:center; /* so image is centered */
+  flex: 0 0 auto; /* not sure why this works but else the heigt of the div enclosing the image becomes too big */
+}
+
+.c_video_mdl #video__timer {
+    color:red;
+    font-size:0.8rem;
+}
+
+.c_video_mdl .carousel {
+    display:flex;
+    justify-content:center;
+    width:100%;
+}
+
+.c_video_mdl  .carousel-inner {
+    flex: 0 0 85%;;
+    order:2;
+    background-color:white; /* important! this way the stuff at the back is hidden */
+    opacity:1;
+    padding:0.2rem;
+}
+
+.c_video_mdl .carousel-control-prev {
+    flex: 0 0 6%;; /* over rides bs auto which messes up the alignment of the arrows*/
+    order:1;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    background-color:white;
+    opacity:1;
+    border: 1px solid #dee2e6;
+    border-right:none;
+}
+
+.c_video_mdl .carousel-control-next {
+    flex: 0 0 6%;; /* over rides bs auto which messes up the alignment of the arrows*/
+    order:3;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    background-color:white;
+    opacity:1;
+    border: 1px solid #dee2e6;
+    border-left:none;
+}
+
+
+/*** image modal ***/
+
+.c_img_mdl .modal { /* boot strap col-12 adds padding - so the modal does not cover the underlying stuff */
+    padding:0;
+}
+
+.c_img_mdl .modal-header {
+    flex-direction:row; /* bootstrap spec over ridden */
+    padding-bottom:0;
+    padding-top:0.5rem;
+}
+
+.c_img_mdl .c_close_img_mdl {
+    color:blue;
+    font-size: 0.9rem;
+   /* font-weight: 600; */
+}
+
+
+.c_img_mdl .modal-header .c_mdl_hdr__title__subtitle {
+    flex: 0 0 83%;
+    color:blue;
+
+}
+
+.c_img_mdl .modal-header .c_mdl_img__title {
+   font-size: 0.9rem;
+}
+
+.c_img_mdl .modal-header .c_mdl_img__subtitle {
+    font-size: 0.8rem;
+    color:black;
+}
+
+.c_img_mdl .modal-header .c_close_img_mdl {
+    flex: 0 0 10%;
+}
+
+.c_img_mdl .modal-body {
+   display:flex;
+   justify-content:center; /* so image is centered */
+   flex: 0 0 auto; /* not sure why this works but else the heigt of the div enclosing the image becomes too big */
+   background-color: #e2eef5;
+    background: linear-gradient(#e2eef5, white);
+    /*  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); */
+    box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
+    border: 1px solid #dee2e6;
+ }
+
+.c_img_mdl .img-thumbnail {
+    width:70%; /* so the carousel pointers are not crowded out  - this also controls the height of the modal */
+    border:none; /* boot strap has a border on image thumbnail  creates distraction */
+}
+
+.c_img_mdl .modal-footer {
+    border:none;
+}
+.c_img_mdl .carousel {
+    display: flex;
+    justify-content: center;
+}
+
+.c_img_mdl  .carousel-inner {
+    flex: 0 0 85%;;
+    order:2;
+    opacity:1;
+    margin: 1.75rem auto;
+   /* padding:0.2rem; */
+    margin-left:0;
+    margin-right:0;
+}
+
+.c_img_mdl .carousel-item {
+    background-color:white; /* important! this way the stuff at the back is hidden */
+}
+
+.c_img_mdl .carousel-control-prev {
+    flex: 0 0 6%;; /* over rides bs auto which messes up the alignment of the arrows*/
+    order:1;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    background-color:white;
+    opacity:1;
+    border: 1px solid #dee2e6;
+    border-right:none;
+    margin: 1.75rem auto;
+    margin-right:0;
+}
+
+.c_img_mdl .carousel-control-next {
+    flex: 0 0 6%;; /* over rides bs auto which messes up the alignment of the arrows*/
+    order:3;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    background-color:white;
+    opacity:1;
+    border: 1px solid #dee2e6;
+    border-left:none;
+    margin: 1.75rem auto;
+    margin-left:0;
+}
+
+.c_img_mdl .modal-content {
+    border-right:none;
+    border-left:none;
+    border-radius:0;
+}
+
+/*** bullet modal ***/
+
+
+.c_bul_mdl .modal { /* boot strap col-12 adds padding - so the modal does not cover the underlying stuff */
+    padding:0;
+}
+
+.c_bul_mdl .modal-header {
+    flex-direction:row; /* bootstrap spec over ridden */
+    padding-bottom:0;
+    padding-top:0.5rem;
+}
+
+.c_bul_mdl .modal-header p {
+    font-size:1.5rem; /* bootstrap spec over ridden */
+    color: #4c210c;
+}
+
+.c_bul_mdl .carousel {
+    display:flex;
+    align-items:center; /* so the card with the bullets are centered */
+    width:100%;
+}
+
+.c_bul_mdl  .carousel-inner {
+    flex: 0 0 85%;;
+    order:2;
+    background-color:white; /* important! this way the stuff at the back is hidden */
+    opacity:1;
+    padding:0.2rem;
+}
+
+.c_bul_mdl .carousel-control-prev {
+    flex: 0 0 6%;; /* over rides bs auto which messes up the alignment of the arrows*/
+    order:1;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    background-color:white;
+    opacity:1;
+    border: 1px solid #dee2e6;
+    border-right:none;
+}
+
+.c_bul_mdl .carousel-control-next {
+    flex: 0 0 6%;; /* over rides bs auto which messes up the alignment of the arrows*/
+    order:3;
+    position:initial; /* important bootstrap makes the carousels absolute so it is hard to position them relative to carousel inner */
+    background-color:white;
+    opacity:1;
+    border: 1px solid #dee2e6;
+    border-left:none;
+}
+
+
+.c_bul_mdl ul {
+    margin-bottom:0.5rem; /** browser has a standard ul margin of 1 rem - which is too much */
+}
+
+.c_bul_mdl ul li {
+  display:inline; /** IE messes up bullet alignments; this simply removes bullets from ul */
+}
+
+.c_bul_mdl .modal-body {
+  display:flex;
+  justify-content:center; /* so image is centered */
+  flex: 0 0 auto; /* not sure why this works but else the heigt of the div enclosing the image becomes too big */
+}
+
+.c_bul_mdl .c_bul_msg_bdy {
+  width:100%; /* IE does not inherit width from parent; so need it explicitly. See stackoverflow in cross-browser testing */
+}
+
+.c_bul_mdl .c_close_bul_mdl {
+    color:blue;
+    font-size: 0.8rem;
+    flex: 0 1 10%;
+  /*  font-weight: 600; */
+}
+
+.c_bul_mdl .c_bul__group_hdr{
+    color: black;
+    font-weight: 600;
+    text-shadow: rgb(202, 147, 147) 1px 1px 2px;
+    font-size:0.75rem;
+}
+
+.c_bul_mdl .c_bul__first__column__string { /* this way you can optimize how the bullets spread out */
+    flex: 2 0 100%; /* bullet modals - first string can occupy the entire width;only one bullet */
+    font-size:0.70rem;
+}
+
+
+
+/** carousels ***/
+
+.carousel-inner, .carousel-control-prev, .carousel-control-next {
+    width:auto; /* need it for IE */
+    opacity:initial; /* reset boot strap opacity */
+}
+
+
+
+
+/** RESPONSE STREAM CSS ***/
+
+.c_resp__bubble--slideIn {
+    transform: translate(0, 0);
+    -ms-transform:translate(0, 0);
+}
+
+.border__to_resp {
+    border-bottom-left-radius:5px; /* 05-17 */
+    border-bottom-right-radius:5px;
+ /*   border: solid 1px #e9ecef;  - now conversation stream has the border */
+    border-top:none;
+}
+
+.c_resp_strm {
+    flex: 1 0; /* important! grow the botton but do not shrink it */
+    background-color: rgb(255,255,255);
+    text-align: center;
+    -webkit-transition: border 0.85s cubic-bezier(0.68, 0.01, 0.245, 1.13) 0.35s;
+    ms-transition: border 0.85s cubic-bezier(0.68, 0.01, 0.245, 1.13) 0.35s;  /* 2019 Not for IE; 05-18 remove it, since resizing of viewport becomes animated *//*05-12 */
+    flex-grow:1; /* imporant! expands the chat box to fill the available space */
+}
+
+.c_form_resp {
+  /* margin: 10px; width is precious no need to waste it;*/ /*05-08 make sure does not cause jitter */
+  /*  padding: 5px 1em; */ /* creates padding for the form in it */
+    overflow: hidden;
+    padding-top:1rem;
+}
+
+.c_tl_resp {
+  /* margin: 10px; width is precious no need to waste it;*/ /*05-08 make sure does not cause jitter */
+  /*  padding: 5px 1em; */ /* creates padding for the form in it */
+    overflow: hidden;
+    padding-top:1rem;
+}
+
+.c_survey_resp {
+    overflow: hidden;
+    padding-top:1rem;
+}
+
+.c_qr_btn_resp {
+    background-color: rgb(255,255,255);
+    padding: 2em 2em;
+    overflow: hidden;
+}
+
+.c_form_resp .c_resp__bubble, .c_survey_resp .c_resp__bubble, .c_tl_resp .c_resp__bubble, .c_pmt_resp .c_resp__bubble  {
+    border-top: solid 1px #e9ecef;
+  /*  transition: transform 1s ease-out;  | response stream and bubble has transitions - so not needed for form_resp_ */
+}
+
+/** survey response ***/
+
+#survey-response { /* 05-14 replaced by bootstrap "form-inline" for two fields; and "form" for more than four fields; */
+    flex-wrap:wrap;
+    display:flex;
+    justify-content:space-around; /* so that if last row has only two elements - instead f 3 they are evenly spaced */
+    padding:0.3rem; /* create an edge between lhs and rhs for survey options */
+    padding-top:1rem;
+
+} /* this helps center and align the form */
+
+.c_survey_resp input[type=checkbox], .c_survey_resp input[type=radio]  {
+    width: 1.0rem;
+    height: 1.0rem;
+
+} /* make the checkboxes and radio buttons responsive */
+
+#lead-connect-modal-survey-response input[type=checkbox], #lead-connect-modal-survey-response input[type=radio]  {
+    width: 1.2rem;
+    height: 1.2rem;
+ /*   margin-top:0; */
+
+} /* make the checkboxes and radio buttons responsive */
+
+.c_survey__input__field { /* so that all labels are one below the other */
+    text-align:left;
+    box-sizing:initial;
+}
+
+#survey-response .c_survey__input__field.form-control { /* style for the survey options that do not apply to the survey button */
+  border:none; /* reset the bootstrap borders */
+  border-radius:0px; /* reset the bootstrap border radius */
+  border-bottom: 1px dotted #0a0a0a; /* so that it looks different than the text inut field for other */
+  flex: 0 0 30%;
+}
+
+#lead-connect-modal-survey-response .c_survey__input__field.form-control { /* style for the survey options that do not apply to the survey button */
+    border:none; /* reset the bootstrap borders */
+    border-radius:0px; /* reset the bootstrap border radius */
+    width:70%;
+    padding:1rem;
+}
+
+#lead-connect-modal-survey-response .text-box {
+    width:70%;
+}
+
+#lead-connect-modal-survey-response .c_survey__input__field label { /* style for the survey options that do not apply to the survey button */
+    color:blue; /* the text for the labels */
+    font-size: 1.0rem;
+    margin:0;
+    padding-left:1rem;
+    vertical-align: middle; /* makes sure checkbox and label are aligned */
+}
+
+.c_survey__input__field.form-control.c_survey__other__option { /* style for the survey options that do not apply to the survey button */
+  border:none; /* only check boxes option div have a border-bottom */
+  display:flex; /* label div and text input field div for other are flex items */
+}
+
+.c_survey__input__field #other { /* style sheet for the "other" option input text in survey */
+  border:none; /* reset the bootstrap border across the text box */
+  border-bottom: 1px solid #0a0a0a; /* and only the bottom border of the text box */
+  max-width:60%; /* controls the width of the underlined input text line; text forms have default */
+  min-width:60%;
+  margin-left:5%; /* between label and text input */
+  font-size: 0.9rem;
+}
+
+.c_survey__input__field label { /* style for the survey options that do not apply to the survey button */
+    color:blue; /* the text for the labels */
+    font-size: 0.9rem;
+    vertical-align: middle; /* makes sure checkbox and label are aligned */
+}
+
+.survey-option-checked { /* style for the survey options that are checked*/
+  box-shadow: rgba(38, 38, 38, 0.6) 0px 0px 0px 1px inset; /* add shadow to ones that are checked (prefilled) */
+}
+
+.c_survey__qr_contain {
+    display:flex;
+    justify-content:space-around;
+    width:100%; /* so the qr buttons always start on the next row */
+    padding: 2em 2em;
+    overflow: hidden;
+}
+
+#survey-response .c_survey__qr_btn_contain {
+    display:flex;
+    justify-content:center;
+    flex:0 0 30%;
+}
+
+#lead-connect-modal-survey-response .c_survey__qr_btn_contain {
+    display:flex;
+    justify-content:center;
+    flex:0 0 30%;
+}
+
+.c_survey__qr_btn  {
+    box-sizing:initial;
+  /*  max-width:55%;
+    min-width:55%; */
+   /* height:45%; messes up IE*/ /* % of the column width; hence 40%; label and input field increase the height of the div; flexbox then makes the button thick; this 50% of the height of the div; */
+    align-self:center; /* this centers the text of button vertically */
+    text-align:center; /*  this centers the text of button horizontally */
+    padding-left:1.25rem; /* this it to make the padding for survey-input fields and submit button (which is b.s) same width */
+
+}
+
+#survey-response .c_survey__qr_btn.btn, #lead-connect-modal-survey-response .c_survey__qr_btn.btn { /* jazz up the buttons for ALL 3 response types; tile response different jazzing up*/
+    border-radius: 20px;
+    font-size: 1.0rem;
+    font-weight: 500;
+    box-shadow: 0 1px 1px rgba(0,0,0,.14);
+    color: rgb(10, 91, 255);
+    border: 1px solid rgb(10, 91, 255);
+    background-color: rgb(255, 255, 255);
+    text-shadow:none;
+    padding: 0.5rem;
+    max-width: none;
+    white-space: pre-wrap;
+}
+
+.c_survey__qr_btn.btn:hover { /* response buttons */
+    color: rgb(255,255,255);
+    border: 1px solid rgb(10,91, 255);
+    background-color: rgb(77,136,255);
+}
+
+
+/** qr response ***/
+
+#qr-response{
+    flex-wrap:wrap;
+    display:flex;
+ /*   justify-content:center; */
+    justify-content:space-around;
+    min-height:3rem;
+}
+
+.c_qr_btn_resp .c_qr_btn.btn {
+    padding: 0.5rem;
+    max-width: none;
+    white-space:pre-wrap; /* important! IE needs it, else buttons in text do not wrap; also button width expands */
+}
+
+.c_imgselector__qr{ /* this is to select buttons that toggle image thumbnails */
+    display:flex;
+    justify-content:center;
+    border-bottom-color: red;
+    border-width:1px;
+    border-bottom-style:solid;
+}
+
+.c_imgselector_btn { /* this is to select buttons that toggle image thumbnails */
+    flex: 0 0 10%; /* this way the button grows or shrinks to fit the available size */
+    height: 15%;
+    color: black;
+ /*   background-color: #ffd6d6; */
+    background-color: #007bff;
+    border-color: #285e8e;
+    border-style:solid;
+    border-width:1px;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding: .175rem .75rem;
+    line-height: 1.5;
+    border-radius: 5px;
+    font-family: inherit;
+}
+
+.c_qr_btn.btn { /* jazz up the buttons for ALL 3 response types; tile response different jazzing up*/
+  border-radius: 20px;
+ /* border-style: solid;
+  border-width: 1px;
+  background: #ecf0f5; */
+  font-size:1.0rem;
+  font-weight: 500;
+  box-shadow: 0 1px 1px rgba(0,0,0,.14);
+  color: rgb(10, 91, 255);
+  border: 1px solid rgb(10, 91, 255);
+  background-color: rgb(255, 255, 255);
+}
+
+.c_qr_btn.btn:hover { /* response buttons */
+/*  color: #007bff; */ /* 2019 */
+ /* background-color:#f4f7f929;*/ /* controls color when hovered */
+ /* border-color: #007bff; */
+    color: rgb(255,255,255);
+    border: 1px solid rgb(10,91, 255);
+    background-color: rgb(77,136,255);
+}
+
+
+/** tile response ***/
+
+#tile-response { /* consistent with other response containers - form-response, etc */
+    flex-wrap:wrap;
+    display:flex;
+    justify-content:space-around;
+}
+
+.c_tl_resp__field { /* jazz up the response tile */
+    white-space:pre-wrap;
+    border-radius: 2px;
+    border-color: rgb(162, 98, 236);
+    border-style: solid;
+    border-width: 1px;
+    background:  #ecf0f5;
+    color: black;
+    font-size: 1.0rem;
+
+    font-weight: 500;
+    box-shadow: 0 3px 3px rgba(0,0,0,.14);
+
+    cursor:pointer;
+    text-align: center;
+    vertical-align: middle;
+
+    line-height: 1.5;
+
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+/*** form response css ***/
+
+#form-response,
+#b2bconversion-modal-form-response,
+#academicconversion-modal-form-response  { /* 05-14 replaced by bootstrap "form-inline" for two fields; and "form" for more than four fields; */
+    flex-wrap:wrap;
+    display:flex;
+    justify-content:space-around;
+    padding-top:1rem;
+    border: 1px solid #9c9999;
+    border-radius:5px;
+}
+#form-response {
+    margin:1rem;
+}
+
+#form-response .text-box {
+    width:70%;
+}
+
+#form-response .c_form__input_contain,
+#b2bconversion-modal-form-response .c_form__input_contain,
+#academicconversion-modal-form-response .c_form__input_contain {
+    flex: 0 0 40%;
+}
+
+#form-response .c_form__input_contain {
+    display:flex;
+    flex-direction:column;
+}
+
+#form-response label,
+#b2bconversion-modal-form-response label,
+#academicconversion-modal-form-response label {
+   /* text-align:center; */
+    text-align:start;
+    color:red;
+    font-size:0.8rem;
+}
+
+#form-response textarea,
+#b2bconversion-modal-form-response textarea,
+#academicconversion-modal-form-response textarea {
+    display:block;
+    margin-bottom:5%;
+    text-align:left;
+    font-size:0.9rem;
+}
+
+#form-response input[type="text"], #form-response input[type="email"], #form-response input[type="tel"] { /* 05-14 */
+    border-bottom: 1px solid; /* used to be black */
+    border-color: rgb(162, 98, 236);
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-radius: 0;
+    max-width:90%; /* controls the width of the input area for form fields */
+    min-width:90%; /* 90 % is of the bootstrap column allocated */
+    color:blue;
+    padding-left: 0px! important; /* bootstrap adds padding that messes alignment. */
+    text-align:center;
+}
+
+#b2bconversion-modal-form-response input[type="text"],
+#b2bconversion-modal-form-response input[type="email"],
+#b2bconversion-modal-form-response input[type="tel"],
+#academicconversion-modal-form-response input[type="text"],
+#academicconversion-modal-form-response input[type="email"],
+#academicconversion-modal-form-response input[type="tel"] {
+    border-bottom: 1px solid; /* used to be black */
+    border-color: rgb(162, 98, 236);
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-radius: 0;
+    max-width:90%; /* controls the width of the input area for form fields */
+    min-width:90%; /* 90 % is of the bootstrap column allocated */
+    color:blue;
+    padding-left: 0px! important; /* bootstrap adds padding that messes alignment. */
+    text-align:center;
+}
+
+#b2bconversion-modal-form-response  .c_form__input__field,
+#academicconversion-modal-form-response  .c_form__input__field { /* important */
+    box-sizing:initial;
+    font-size:1.0rem; /* smaller size than as button - so more text can be shown or entered; */
+}
+
+
+
+#form-response  .c_form__qr_btn.btn,
+#b2bconversion-modal-form-response  .c_form__qr_btn.btn,
+#academicconversion-modal-form-response  .c_form__qr_btn.btn,
+.c_pa__qr_contain .c_form__qr_btn.btn,
+.c_bi__qr_contain .c_form__qr_btn.btn,
+.c_pp__qr_contain .c_form__qr_btn.btn {
+    border-radius: 20px;
+    font-size: 1.0rem;
+    font-weight: 500;
+    box-shadow: 0 1px 1px rgba(0,0,0,.14);
+    color: rgb(10, 91, 255);
+    border: 1px solid rgb(10, 91, 255);
+    background-color: rgb(255, 255, 255);
+    text-shadow: none;
+    padding: 0.5rem;
+    max-width: none;
+    min-height:1.5rem; /* this way if onebutton has lots of text, the other does not look puny */
+    white-space: pre-wrap;
+}
+
+#form-response  .c_form__qr_btn.btn:hover,
+#b2bconversion-modal-form-response .c_form__qr_btn.btn:hover,
+#academicconversion-modal-form-response .c_form__qr_btn.btn:hover,
+.c_pa__qr_contain .c_form__qr_btn.btn:hover,
+.c_bi__qr_contain .c_form__qr_btn.btn:hover,
+.c_pp__qr_contain .c_form__qr_btn.btn:hover{
+    color: rgb(255,255,255);
+    border: 1px solid rgb(10,91, 255);
+    background-color: rgb(77,136,255);
+}
+
+.c_form__qr_contain {
+    display:flex;
+    justify-content:space-around;
+    width:100%; /* this way the buttons start in a new row two buttons for all except conversion probe */
+    padding: 1.5em 2em;
+    overflow: hidden;
+}
+
+#form-response  .c_form__qr_btn_contain, .c_pa__qr_contain .c_form__qr_btn_contain, .c_bi__qr_contain .c_form__qr_btn_contain,  .c_pp__qr_contain .c_form__qr_btn_contain {
+    display:flex;
+    justify-content:center;
+    flex:0 0 30%;
+}
+
+
+#form-response .c_form__qr_btn_contain .c_form__qr_btn {
+   /* flex: 0 0 35% */
+}
+
+.c_form__qr_btn  {
+    box-sizing:initial;
+  /*  max-width:55%;
+    min-width:55%; */
+   /* height:45%; */ /* this messes up the button in IE. Let the button remain thick % of the column width; hence 40%; label and input field increase the height of the div; flexbox then makes the button thick; this 50% of the height of the div; */
+    align-self:center; /* this positions the button bottom at the same level as the input field; */
+    text-align:center; /* the c_survey__input__field text is aligned left */
+    padding-left:1.25rem; /* this it to make the padding for survey-input fields and submit button (which is b.s) same width */
+}
+
+/* controls the width of the image modal, normally modal-dialog does it, but image modal does not use it since it messes the carousel
+ /* centers the modal in the viewport */
+
+@keyframes font-fade {
+    50% {
+        color: transparent
+    }
+    100% {
+        color: inherit
+    }
+}
+
+@keyframes loading {
+    0% {
+        left: 12px
+    }
+    33.3331% {
+        left: 12px
+    }
+    33.3333% {
+        left: 17px
+    }
+    66.6661% {
+        left: 17px
+    }
+    66.6666% {
+        left: 21px
+    }
+    99.99% {
+        left: 21px
+    }
+    100% {
+        left: 12px
+    }
+}
+
+@keyframes item-fade {
+    0% {
+        opacity: 0
+    }
+    80% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1
+    }
+}
+
+.btn { /* response buttons */
+    color: #007bff;
+   /* background-color: #fff; */
+    background-color: #9e9e9e1a;
+    border-color: #285e8e;
+} /* change the bootstrap button colors, hover is too dark */
+
+/*
+.btn:hover, .c_form__qr_btn_contain:hover {
+    color: rgb(255,255,255);
+    border: 1px solid rgb(10,91, 255);
+    background-color: rgb(77,136,255);
+}
+*/
+
+/*This is modifying the btn-primary colors but you could create your own .btn-something class as well*/
+.btn-primary { /* form buttons */
+    color: #fff;  /* controls text color of form button */
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover { /* form buttons */
+  /*  color: #fff; 2019 - cannot see button when hover */
+    color: rgb(255,255,255);
+    border: 1px solid rgb(10,91, 255);
+    background-color: rgb(77,136,255);
+}
+
+/* 2019 - the main chalakhIcon is now flex - see if this is required; absolute the icon moves - fixed makes it anchored to the browser lower right window */
+/* .chalakhIcon {
+    position:fixed;
+    top:65%;  // position chat icon 90% from the to in the DIV frame;
+    right:25px; // 20px from right edge
+    display:none;
+} */
+.c_error_mdl {
+    display:flex;
+    justify-content:center; /* helps center the pop-up*/
+}
+
+/**** CSS hides   come at the END after the actual class has been defined- precedence of css */
+
+#header.c_hide,
+#subheader.c_hide,
+.c_convrs_strm.c_hide,
+.c_exit_mdl.c_hide,
+.c_error_mdl.c_hide,
+.c_bul_mdl.c_hide,
+.c_b2b_cx_mdl.c_hide,
+.c_academic_cx_mdl.c_hide,
+.c_lead__connect_mdl.c_hide,
+.c_video_mdl.c_hide,
+.c_audio_mdl.c_hide,
+.c_mdl__download__gif.c_hide,
+.c_img_mdl.c_hide,
+#c_pmt__other__choice_contain.c_hide { /* TODO combine all hides */
+    display: none
+} /* these are probably obsolete */
+
+
+.c_error_mdl p, .c_error_mdl .btn {
+  font-size:0.8rem;
+}
+
+.c_error_mdl .modal-footer {
+  padding:0.5rem;
+}
+
+.c_error_mdl .modal-header {
+  padding:0.2rem;
+  border: none;
+}
+
+
+/**** IMPORTANT - these are altered by chat.js by chaging variables based on device type - mobile, tabklet, desktop */
+
+    :root {
+        font-size: var(--font-size);
+    }
+    .c_bot_contain   {
+        padding-right: var(--c_bot_contain-pad-right);
+        top: var(--c_bot_contain-top); /* full screen for cell phones */
+        position: var(--c_bot_contain-position); /* boot strap xl, lg, and md - stuff, gives greater flexibility */
+        margin-left: var(--c_bot_contain-margin-left);
+        max-width: var(--c_bot_contain-max-width);
+    }
+
+    #header {
+          min-height: var(--hdr-min-height);
+          max-height: var(--hdr-max-height);
+      }
+
+    #header .c_hdr_itms {
+        border-top-right-radius: var(--hdr-min-border-top-right-radius);
+        border-top-left-radius: var(--hdr-min-border-top-left-radius);
+        padding-top:var(--hdr-padding-top);
+        padding-bottom:var(--hdr-padding-bottom);
+    }
+
+    #subheader {
+        min-height: var(--subhdr-min-height);
+    }
+
+    #subheader .c_subhdr_itms {
+      /*  padding-top:var(--subhdr-padding-top); */
+        padding-bottom:var(--subhdr-padding-bottom);
+    }
+
+    .c_convrs_strm {
+        max-height:var(--c_convrs_strm-max-height); /* Important! this controls the height; top is 5vh; header is 10vh min; and cstream is 85vh*/
+        min-height:var(--c_convrs_strm-min-height);
+    }
+
+    .c_resp_strm #footer, .c_resp_strm #footer .d-flex{
+        display: var(--c_ftr-display); /* initially hidden, then changed to flex */
+    }
+
+    #footer  #poweredByChalakh { /* applies to all nav-items, bold & white */
+        color: rgb(183, 182, 183);
+       display: var(--c_ftr-display); /* initially hidden, then changed to flex */
+
+    }
+
+    #chalakhIcon {
+        width: var(--icon-width);
+        font-size: var(--icon-font-size);
+
+    }
+
+    #cuiImageModal,#cuiAudioModal,#cuiVideoModal,#cuiExitModal, #cuiBulletModal {
+        width: var(--mdl-max-width); /* bootstrap has a maxwidth of 500px for the modal which dictates how wide the modals can be */
+        margin-left: var(--mdl-margin-left);
+        max-width: var(--mdl-width);
+        top:var(--mdl-top); /* since no top for mobile, covers part of the header */
+        padding-right:var(--mdl-padding-right);
+
+    }
+    #cuiImageModal .carousel { /* imageModal is a pop-up modal it does not hae modal dialog */
+
+        margin:0.3em;
+    }
+    #cuiErrorModal  { /* input error pop up */
+        width: var(--er-modal-width);
+        position: var(--er-modal-position);
+        left: var(--er-modal-left);
+        top: var(--er-modal-top);
+
+    }
+
+    #cuiB2BConversionModal, #cuiAcademicConversionModal, #cuiLeadConnectModal  { /* input error pop up */
+        width: var(--cx-modal-width);
+        position: var(--cx-modal-position);
+        left: var(--cx-modal-left);
+        top: var(--cx-modal-top);
+        padding-right: var(--c_bot_contain-pad-right);
+
+    }
+
+    #cuiB2BConversionModal .c_form__qr_btn.btn, #cuiAcademicConversionModal .c_form__qr_btn.btn, #cuiLeadConnectModal .c_form__qr_btn.btn {
+        min-height: 1.5rem;
+        flex: 0 0 30%;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    #cuiB2BConversionModal .modal-header h6, #cuiAcademicConversionModal .modal-header h6, #cuiLeadConnectModal .modal-header h6 {
+        text-align:center;
+        font-weight:600;
+    }
+
+    #cuiLeadConnectModal #lead-connect-modal-survey-response {
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        border: 1px solid #9c9999;
+        border-radius:5px;
+        padding-top:1rem;
+    }
+
+
+
+    .modal-dialog {
+        margin-right: var(--mdl-dialog-margin-right);
+        margin-left:var(--mdl-dialog-margin-left);
+        margin-top: var(--mdl-dialog-margin-top);
+        margin-bottom: var(--mdl-dialog-margin-bottom);
+        max-width: var(--mdl-dialog-max-width);
+        padding:0.4rem;
+        background-color: #dfdfdf;
+    }
+
+   #cuiAudioModal .modal-dialog {
+       background-color:initial;
+   }
+
+    #cuiAudioModal .modal-content {
+        background: linear-gradient(#e2eef5, white);
+    }
+
+   .c_audio_mdl .c_mdl__download__gif .img-fluid {
+     width: var(--mdl-download-gif-width);
+     height: var(--mdl-download-gif-height);
+   }
+
+
+#chalakhIcon.chalakhIcon__show { /* id has more precdence than class - this makes the css of class specific and gets higher precedence; else display: none in ChalakhICon id will overrode */
+   /* display: block; */
+    display: flex; /* 2019 moving to flex model */
+}
+
+body {
+    overflow-x:hidden;
+    background-color: transparent !important; /* ONLY message stream and response stream have background colors. this is so that the iframe and conversation white color does not show up */
+}
+

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!-- Version 1-->
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, minimal-ui, initial-scale=1, minimum-scale=1, user-scalable = no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <title>Chalakh - An Adaptive, Smart Conversational Assistant</title>
+    <meta name="description"
+          content="Chalakh helps website visitors quickly accomplish the purpose of their visit">
+
+</head>
+<body>
+
+<script type="text/javascript">
+
+          var completeURL, co_js_file_name, trid;
+
+          function getScript (url, integrity, async) {
+
+            var jsName = document.createElement('script');
+            jsName.src = url;
+            jsName.type = 'text/javascript';
+            jsName.aync = async; // 1 means aysnc;
+            jsName.crossOrigin = "anonymous";
+            if (integrity != 0) jsName.integrity = integrity;
+            document.getElementsByTagName('head')[0].appendChild(jsName);
+          }
+          function getPageURLParams(paramName)  {
+
+            var url = window.location.search.substring(1); //get rid of "?" in querystring
+            var qArray = url.split('&'); //get key-value pairs
+            for (var i = 0; i < qArray.length; i++)
+            {
+              var pArr = qArray[i].split('='); //split key and value
+              if (pArr[0] == paramName)
+                return pArr[1]; //return value
+            }
+          } // given a parameter in search string returns the value
+          function processReturnedTrackingIDJSON(response) {
+            parsedResponse = JSON.parse(response);
+            trid = parsedResponse.tracking_id;
+            if ((trid != null) || (trid != undefined)) {
+              co_js_file_name = 'https://s3.us-east-2.amazonaws.com/chalakh-bot-js/' + trid + '_co.js.gz';
+              getScript(co_js_file_name);
+            }
+
+          }
+
+          function callAjax(url, callback){
+            var xmlhttp;
+            // compatible with IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function(){
+              if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+                callback(xmlhttp.responseText);
+              } else console.log (xmlhttp);
+            }
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+          }
+
+          function getTrackingID(completeUrl) {
+            var apiEndPoint = "http://127.0.0.1:8000/api/get_trid";
+            var apiURL = apiEndPoint + '?url='+ completeUrl;
+            callAjax(apiURL, processReturnedTrackingIDJSON)
+
+          }
+
+
+          trid = getPageURLParams('trid');
+          if (trid != undefined) {
+            co_js_file_name = 'https://s3.us-east-2.amazonaws.com/chalakh-bot-js/' + trid + '_co.js.gz';
+            getScript(co_js_file_name,0,0);
+          } else {
+        //    completeURL = window.location.href, (this will give iframes href - which is not what we want
+            completeURL = document.referrer; // this is the url that the user typed in the browser on which snippet has been added.
+            trid = getTrackingID(completeURL);
+          }
+          // getScript('./chalakh/534_co.js', 0, 0);
+          // getScript('./chalakh/co1221.js', 0, 0)
+
+</script>
+
+<!--
+<script src="./Conversational%20Chat%20Interface/co1215.js"></script>
+
+-->
+
+</body>
+</html>

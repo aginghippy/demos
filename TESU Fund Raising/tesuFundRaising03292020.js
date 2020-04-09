@@ -51,7 +51,10 @@ $(document).ready(function(){
             "ncnt": "18",
             "cnam": "Thomas Edison Fund Raising",
             "cimod": "PR-1",
-            "webproperty": "bs-local.com"
+            "webproperty": "bs-local.com",
+            "searchType": null,
+            "campaignType": "simple",
+            "debugMode": false
           }
 
 
@@ -73,9 +76,12 @@ $(document).ready(function(){
               "uscs": useCaseID,
               "tcnt": "1",
               "ncnt": "3",
-              "cnam": "Teachers Fund Raising",
+              "cnam": "TESU Fund Raising",
               "cimod": "PR-1",
-              "webproperty": "bs-local.com"
+              "webproperty": "bs-local.com",
+              "searchType": null,
+              "campaignType": "simple",
+              "debugMode": false
             }
 
 
@@ -111,27 +117,42 @@ $(document).ready(function(){
           {
             "topicID": 0,
             "nodeOrder": 0,
+            "nodeDisplayName": "What Would You Like To Support",
+            "nodeTemplateCategory": "closeEndedQuestion",
+            "skipLogicType": "default",
+            "skipLogic": [
+
+            ],
+            "dataPrefilled": false,
+            "searchContent": false,
+            "searchQuery":false
+          },
+          {
+            "topicID": 0,
+            "nodeOrder": 1,
             "nodeDisplayName": "Select Payment Amount",
             "nodeTemplateCategory": "paymentProcessor",
             "skipLogicType": "default",
             "skipLogic": [
 
             ],
-            "dataPrefill": false,
-            "searchContentOrQuery": false
+            "dataPrefilled": false,
+            "searchContent": false,
+            "searchQuery": false
           }, // node order 0;  nodeTemplateCategory = paymentProcessor
-          {
+     /*     {
             "topicID": 0,
-            "nodeOrder": 1,
+            "nodeOrder": 2,
             "nodeDisplayName": "Select Annual Giving Donation Choices",
             "nodeTemplateCategory": "closeEndedQuestion",
             "skipLogicType": "default",
             "skipLogic": [
 
             ],
-            "dataPrefill": false,
-            "searchContentOrQuery": false
-          }, // node order 1, nodeTemplateCategory = closeEndedQuestion
+            "dataPrefilled": false,
+            "searchContent": false,
+            "searchQuery": false
+          }, // node order 1, nodeTemplateCategory = closeEndedQuestion */
           {
             "topicID": 0,
             "nodeOrder": 2,
@@ -139,8 +160,9 @@ $(document).ready(function(){
             "nodeTemplateCategory": "terminateConversation",
             "skipLogicType": "end",
             "skipLogic": [],
-            "dataPrefill": false,
-            "searchContentOrQuery": false
+            "dataPrefilled": false,
+            "searchContent": false,
+            "searchQuery": false
           } // node order 2
         ]
       }
@@ -153,289 +175,143 @@ $(document).ready(function(){
     storyNodesInputContent = [
 
       {
+        "topicID": 0,
+        "nodeOrder": 0,
+        "nodeDisplayName": "What Would You Like To Support",
+        "nodeTemplateCategory": "closeEndedQuestion",
+        "nodeContentId": '544_0_0', // tracking id, topic id, node id
+        "answerRequired": true,
+        "searchQuery":false,
+        "searchContent":false,
+        "questionType": "singleChoice",
+        "conversationBlurbs":["Please select a cause you would like your donation to be directed towards"],
+        "audioAnnotation": [],
+        "nodeInputContent" : [
+          {
+            "displayName" : "TESU Scholarship Fund",
+            "returnValue" : "scholarshipfund"
+          },
+          {
+            "displayName" : "Annual Fund",
+            "returnValue" : "annualfund"
+          },
+          {
+            "displayName" : "Nursing Scholarships",
+            "returnValue" : "nursingscholarship"
+          },
+          {
+            "displayName" : "Military Scholarships",
+            "returnValue" : "militaryscholarship"
+          },
+          {
+            "displayName" : "Nicholas & Marjorie Carnevale Endowment",
+            "returnValue" : "nicholasendowment"
+          }
+
+
+        ]
+      }, // Help Alamater topic 3, 0
+
+      {
           "topicID": 0,
-          "nodeOrder": 0,
+          "nodeOrder": 1,
           "nodeDisplayName": "Payment Amount",
-          "nodeContentId": '544_0_0',
+          "nodeContentId": '544_0_1',
           "nodeTemplateCategory": "paymentProcessor",
-          "answerRequired": true,
+          "searchQuery":false,
+          "searchContent":false,
           "conversationBlurbs":["Please select the amount you would like to contribute", "Every dollar that we get from supporters like you helps"],
           "audioAnnotation": [],
           "nodeInputContent": [
           {
-            "paymentAmount": [
+
+            "callToAction": "Your Contribution Will Make a Big Difference",
+            "donationChoices": [
               {
-                "paymentType": [
-                  {
-                    "oneTime": true,
-                    "displayLabel": "One Time Payment"
-                  },
-                  {
-                    "recurringMonthly": true,
-                    "displayLabel": "Sustaining Member"
-                  },
-                  {
-                    "inInstallment": false,
-                    "displayLabel": ""
-                  }
-                ]
+                "value": "100",
+                "valueType": null,
+                "fieldName": "donationAmount",
+                "label": "100"
               },
               {
-                "paymentChoices": [
-                  "$100",
-                  "$200",
-                  "other"
-                ]
+                "value": "200",
+                "valueType": null,
+                "fieldName": "donationAmount",
+                "label": "200"
+              },
+              {
+                "value": "300",
+                "valueType": null,
+                "fieldName": "donationAmount",
+                "label": "200"
+              },
+              {
+                "value": "400",
+                "valueType": null,
+                "fieldName": "donationAmount",
+                "label": "200"
+              },
+              {
+                "value": "other",
+                "valueType": null,
+                "fieldName": "donationAmount",
+                "label": "Other"
+              }
+            ],
+    
+            "paymentMethod": [
+              {
+                "digitalWalletsAccepted": [
+                  "PayPal",
+                  "Visa Checkout",
+                  "Master Card Checkout"
+                ],
+                "websitePaymentPage": "https://www.tesu.edu/",
+                "autoRenewal": true,
+                "paymentDisclaimer": "XXXXXXXXXXXXXXX"
+              }
+            ],
+            "billingInformation": [
+              {
+                "fieldName": "firstName",
+                "required": true,
+                "label": "First Name"
+              },
+              {
+                "fieldName": "lastName",
+                "required": true,
+                "label": "Last Name"
+              },
+              {
+                "fieldName": "emailAddress",
+                "required": true,
+                "label": "Email Address"
+              },
+              {
+                "fieldName": "address1",
+                "required": true,
+                "label": "Address 1"
+              },
+              {
+                "fieldName": "state",
+                "required": true,
+                "label": "State"
+              },
+              {
+                "fieldName": "city",
+                "required": true,
+                "label": "City"
+              },
+              {
+                "fieldName": "zipCode",
+                "required": true,
+                "label": "Zip Code"
               }
             ]
-          },
-          {
-              "paymentMethod": [
-
-                {
-                  "digitalWallets": [
-                    "PayPal",
-                    "Visa Checkout",
-                    "Master Card Checkout"
-                  ],
-                  "websitePaymentPage":"https://give.tesu.edu/give/124557/#!/donation/checkout"
-                }
-              ]
-            },
-          {
-            "billingInformation":
-              [
-                {
-                  "fieldName": "name",
-                  "required": true,
-                  "label": "Name",
-
-                },
-                {
-                  "fieldName": "street",
-                  "required": true,
-                  "label": "Street",
-
-                },
-            {
-              "fieldName": "city",
-              "required": true,
-              "label": "City",
-
-            },
-            {
-              "fieldName": "zipCode",
-              "required": true,
-              "label": "Zip Code",
-
-            },
-            {
-              "fieldName": "country",
-              "required": true,
-              "label": "United States"
-            }
-          ]
-
-          },
-          {
-              "paymentProcessing":
-                [
-                  {
-                    "fieldName": "creditCardNumber",
-                    "required": true,
-                    "label": "Card Number",
-
-                  },
-                  {
-                    "fieldName": "expiration",
-                    "required": true,
-                    "label": "MM/YY",
-
-                  },
-                  {
-                    "fieldName": "cvc",
-                    "required": true,
-                    "label": "CVC",
-
-                  },
-
-                ]
-           } // the cc fields are created by Suhag's webhook code - as constants - part of his spec
-
-        ]
-        }, // the keys HAVE to match the payment processor subcategory
-
-      {
-        "topicID": 0,
-        "nodeOrder": 1,
-        "nodeDisplayName": "Select Annual Giving Donation Choices",
-        "nodeTemplateCategory": "closeEndedQuestion",
-        "nodeContentId": '544_0_1', // tracking id, topic id, node id
-        "answerRequired": true,
-        "filterContent": false,
-        "questionType": "singleChoice",
-        "conversationBlurbs":["Please select a cause you would like your donation to be directed towards"],
-        "audioAnnotation": [],
-        "nodeInputContent": [
-          [{
-          "da_ddf": {
-            "value": "TC Fund - General Operating",
-            "valueType": "", // this is css related stuff; ok for now;
-            "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
-            "label": "TC Fund - General Operating",
-            "required": true
-          },
-          "da_meob": {
-            "da_disob": true,
-            "da_obseg": []
           }
-        }],
-          [{
-            "da_ddf": {
-              "value": "Financial Aid",
-              "valueType": "",
-              "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
-              "label": "Financial Aid",
-              "required": true
-            },
-            "da_meob": {
-              "da_disob": true,
-              "da_obseg": []
-            }
-          }],
-          [{
-            "da_ddf": {
-              "value": "Arts and Humanities",
-              "valueType": "",
-              "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
-              "label": "Arts and Humanities",
-              "required": true
-            },
-            "da_meob": {
-              "da_disob": true,
-              "da_obseg": []
-            }
-          }],
-          [{
-            "da_ddf": {
-              "value": "Biobehavorial Sciences",
-              "valueType": "",
-              "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
-              "label": "Biobehavorial Sciences",
-              "required": true
-            },
-            "da_meob": {
-              "da_disob": true,
-              "da_obseg": []
-            }
-          }],
-          [{
-            "da_ddf": {
-              "value": "Clinical Psychology",
-              "valueType": "",
-              "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
-              "label": "Clinical Psychology",
-              "required": true
-            },
-            "da_meob": {
-              "da_disob": true,
-              "da_obseg": []
-            }
-          }],
-          [{
-            "da_ddf": {
-              "value": "Curriculum and Teaching",
-              "valueType": "",
-              "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
-              "label": "Curriculum and Teaching",
-              "required": true
-            },
-            "da_meob": {
-              "da_disob": true,
-              "da_obseg": []
-            }
-          }],
-          [{
-            "da_ddf": {
-              "value": "Educational Policy & Social Analysis",
-              "valueType": "",
-              "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
-              "label": "Educational Policy & Social Analysis",
-              "required": true
-            },
-            "da_meob": {
-              "da_disob": true,
-              "da_obseg": []
-            }
-          }],
-          [{
-            "da_ddf": {
-              "value": "Health & Behavorial Studies",
-              "valueType": "",
-              "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
-              "label": "No",
-              "required": true
-            },
-            "da_meob": {
-              "da_disob": true,
-              "da_obseg": []
-            }
-          }],
-          [{
-            "da_ddf": {
-              "value": "Human Development",
-              "valueType": "",
-              "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
-              "label": "Human Development",
-              "required": true
-            },
-            "da_meob": {
-              "da_disob": true,
-              "da_obseg": []
-            }
-          }],
-          [{
-            "da_ddf": {
-              "value": "Organizational Leadership",
-              "valueType": "",
-              "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
-              "label": "Organizational Leadership",
-              "required": true
-            },
-            "da_meob": {
-              "da_disob": true,
-              "da_obseg": []
-            }
-          }],
-          [{
-            "da_ddf": {
-              "value": "Mathematics Science & Technology",
-              "valueType": "",
-              "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
-              "label": "Mathematics Science & Technology",
-              "required": true
-            },
-            "da_meob": {
-              "da_disob": true,
-              "da_obseg": []
-            }
-          }],
-          [{
-            "da_ddf": {
-              "value": "International Studies",
-              "valueType": "",
-              "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
-              "label": "International Studies",
-              "required": true
-            },
-            "da_meob": {
-              "da_disob": true,
-              "da_obseg": []
-            }
-          }],
+        ] // new format
 
-        ]
-      },
+        }, // the keys HAVE to match the payment processor subcategory
 
       {
         "topicID": 0,
@@ -448,18 +324,7 @@ $(document).ready(function(){
         "audioAnnotation": [],
         "nodeInputContent": [[
           {
-            'da_ddf': {
-              "text": ["Well I am sorry to hear that"]
-            }
-          },
-          {
-            'da_meob': {
-              "da_obseg": [{
-                "da_ob_skey": "all",
-                "da_ob_sval": "all"
-              }],
-              "da_disob": true
-            }
+            "exitMessage": ["I am sorry to hear that"],
           }
         ],
           [
@@ -516,10 +381,86 @@ $(document).ready(function(){
     storyNodesOutputContent = [
 
     {
+        "topicID": 0,
+        "nodeOrder": 0,
+        "nodeDisplayName": "What Would You Like To Support",
+        "nodeContentId": '544_0_0',
+        "conversationBlurbs":["Please select how you would like the funds to be directed"],
+        "nodeOutputContent": [
+          [{
+            "da_ddf": {
+              "value": "TESU Scholarship Fund",
+              "valueType": "", // this is css related stuff; ok for now;
+              "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
+              "label": "TESU Scholarship Fund",
+              "required": true
+            }},{
+            "da_meob": {
+              "da_disob": true,
+              "da_obseg": []
+            }
+          }],
+          [{
+            "da_ddf": {
+              "value": "Annual Fund",
+              "valueType": "",
+              "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
+              "label": "Annual Fund",
+              "required": true
+            }},{
+            "da_meob": {
+              "da_disob": true,
+              "da_obseg": []
+            }
+          }],
+          [{
+            "da_ddf": {
+              "value": "Nursing Scholarships",
+              "valueType": "",
+              "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
+              "label": "Nursing Scholarships",
+              "required": true
+            }},{
+            "da_meob": {
+              "da_disob": true,
+              "da_obseg": []
+            }
+          }],
+          [{
+            "da_ddf": {
+              "value": "Military Scholarships",
+              "valueType": "",
+              "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
+              "label": "Military Scholarships",
+              "required": true
+            }},{
+            "da_meob": {
+              "da_disob": true,
+              "da_obseg": []
+            }
+          }],
+          [{
+            "da_ddf": {
+              "value": "Nicholas & Marjorie Carnevale Endowment",
+              "valueType": "",
+              "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
+              "label": "Nicholas & Marjorie Carnevale Endowment",
+              "required": true
+            }},{
+            "da_meob": {
+              "da_disob": true,
+              "da_obseg": []
+            }
+          }]
+
+        ]
+      }, // 3,0, Help Alma Mater
+
+    {
       "topicID": 0,
-      "nodeOrder": 0,
+      "nodeOrder": 1,
       "nodeDisplayName": "Payment Amount",
-      "nodeContentId": '544_0_0',
+      "nodeContentId": '544_0_1',
       "nodeOutputContent": [
         [{
           "da_ddf": {
@@ -572,7 +513,7 @@ $(document).ready(function(){
               "label": "'I would like to cover the processing fee so 100% of my donation goes to Thomas Edison",
               "required": false
             }
-          },
+          }},{
           "da_meob": {
             "da_disob": true,
             "da_obseg": []
@@ -584,7 +525,7 @@ $(document).ready(function(){
         "topicID": 0,
         "nodeOrder": 5441,
         "nodeDisplayName": "Payment Method",
-        "nodeContentId": '544_0_0_1',
+        "nodeContentId": '544_0_1_1',
         "nodeOutputContent": [
           [
             {
@@ -594,8 +535,8 @@ $(document).ready(function(){
                   "Visa Checkout",
                   "Master Card Checkout"
                 ],
-                "websitePaymentPage":"https://www.tc.columbia.edu/giving/annual-giving/give-to-tc/"
-              },
+                "websitePaymentPage":"https://www.tesu.edu/"
+              }},{
               "da_meob": {"da_disob": true, "da_obseg": []}
             }
           ]
@@ -605,7 +546,7 @@ $(document).ready(function(){
         "topicID": 0,
         "nodeOrder": 5442,
         "nodeDisplayName": "Billing Information",
-        "nodeContentId": '544_0_0_2',
+        "nodeContentId": '544_0_1_2',
         "nodeOutputContent": [
           [{
             "da_ddf": {
@@ -614,7 +555,7 @@ $(document).ready(function(){
               "name": "firstName",
               "label": "First Name",
               "required": true
-            }, "da_meob": {"precedence": 2, "da_disob": true, "da_obseg": [{"da_ob_seg": null, "da_ob_sseg": null}]}
+            }},{ "da_meob": {"precedence": 2, "da_disob": true, "da_obseg": [{"da_ob_seg": null, "da_ob_sseg": null}]}
           }],
           [{
             "da_ddf": {
@@ -623,7 +564,7 @@ $(document).ready(function(){
               "name": "lastName",
               "label": "Last Name",
               "required": true
-            }, "da_meob": {"precedence": 2, "da_disob": true, "da_obseg": [{"da_ob_seg": null, "da_ob_sseg": null}]}
+            }},{ "da_meob": {"precedence": 2, "da_disob": true, "da_obseg": [{"da_ob_seg": null, "da_ob_sseg": null}]}
           }],
           [{
             "da_ddf": {
@@ -632,7 +573,7 @@ $(document).ready(function(){
               "name": "streetAddress1",
               "label": "Street Address 1",
               "required": true
-            }, "da_meob": {"da_disob": true, "da_obseg": [{"da_ob_seg": null, "da_ob_sseg": null}]}
+            }},{ "da_meob": {"da_disob": true, "da_obseg": [{"da_ob_seg": null, "da_ob_sseg": null}]}
           }],
           [{
             "da_ddf": {
@@ -641,10 +582,10 @@ $(document).ready(function(){
               "name": "city",
               "label": "City",
               "required": true
-            }, "da_meob": {"da_disob": true, "da_obseg": [{"da_ob_seg": null, "da_ob_sseg": null}]}
+            }},{ "da_meob": {"da_disob": true, "da_obseg": [{"da_ob_seg": null, "da_ob_sseg": null}]}
           }],
           [{
-            "da_ddf": {"value": "", "valueType": "", "name": "state", "label": "State", "required": true},
+            "da_ddf": {"value": "", "valueType": "", "name": "state", "label": "State", "required": true}},{
             "da_meob": {"da_disob": true, "da_obseg": [{"da_ob_seg": null, "da_ob_sseg": null}]}
           }],
           [{
@@ -654,14 +595,14 @@ $(document).ready(function(){
               "name": "zipCode",
               "label": "Zip Code",
               "required": true
-            }, "da_meob": {"da_disob": true, "da_obseg": [{"da_ob_seg": null, "da_ob_sseg": null}]}
+            }},{ "da_meob": {"da_disob": true, "da_obseg": [{"da_ob_seg": null, "da_ob_sseg": null}]}
           }]]
       }, // node content id for pseudo nodes is 534_0_0 + _1 or _2 or _3
     {
         "topicID": 0,
         "nodeOrder": 5443,
         "nodeDisplayName": "PaymentProcessing",
-        "nodeContentId": '544_0_0_3',
+        "nodeContentId": '544_0_1_3',
         "nodeOutputContent": [
           [{
             "da_ddf": {
@@ -670,7 +611,7 @@ $(document).ready(function(){
               "name": "cardNumber",
               "label": "Card Number",
               "required": true
-            },
+            }},{
             "da_meob": {
               "da_disob": true,
               "da_obseg": [{"da_ob_seg": null, "da_ob_sseg": null}]
@@ -683,7 +624,7 @@ $(document).ready(function(){
               "name": "expiration", // name = value pair
               "label": "MM/YY",
               "required": true
-            },
+            }},{
             "da_meob": {
               "da_disob": true,
               "da_obseg": [{"da_ob_seg": null, "da_ob_sseg": null}]
@@ -696,7 +637,7 @@ $(document).ready(function(){
               "name": "cvc", // name = value pair
               "label": "CVC",
               "required": true
-            },
+            }},{
             "da_meob": {
               "da_disob": true,
               "da_obseg": [{"da_ob_seg": null, "da_ob_sseg": null}]
@@ -707,9 +648,9 @@ $(document).ready(function(){
       },
     {
       "topicID": 0,
-      "nodeOrder": 1,
+      "nodeOrder": 2,
       "nodeDisplayName": "Select Annual Giving Donation Choices",
-      "nodeContentId": '544_0_1',
+      "nodeContentId": '544_0_2',
       "conversationBlurbs":["We have your company name & tile as shown below", "Please confirm if there are errors"],
       "nodeOutputContent": [
         [{
@@ -719,7 +660,7 @@ $(document).ready(function(){
             "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
             "label": "TESU Scholarship Fund",
             "required": true
-          },
+          }},{
           "da_meob": {
             "da_disob": true,
             "da_obseg": []
@@ -732,7 +673,7 @@ $(document).ready(function(){
             "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
             "label": "Annual Fund",
             "required": true
-          },
+          }},{
           "da_meob": {
             "da_disob": true,
             "da_obseg": []
@@ -745,7 +686,7 @@ $(document).ready(function(){
             "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
             "label": "Nursing Scholarships",
             "required": true
-          },
+          }},{
           "da_meob": {
             "da_disob": true,
             "da_obseg": []
@@ -758,7 +699,7 @@ $(document).ready(function(){
             "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
             "label": "Military Scholarships",
             "required": true
-          },
+          }},{
           "da_meob": {
             "da_disob": true,
             "da_obseg": []
@@ -771,7 +712,7 @@ $(document).ready(function(){
             "name": "q1_sc", // it really should be primaryIndustry but where does this come from; hence Q4
             "label": "Nicholas & Marjorie Carnevale Endowment",
             "required": true
-          },
+          }},{
           "da_meob": {
             "da_disob": true,
             "da_obseg": []
@@ -781,9 +722,9 @@ $(document).ready(function(){
     },
     {
       "topicID": 0,
-      "nodeOrder": 2,
+      "nodeOrder": 3,
       "nodeDisplayName": "",
-      "nodeContentId": '544_0_2',
+      "nodeContentId": '544_0_3',
       "conversationBlurbs":["Here is your email & phone", "I hope this is current"],
       "nodeOutputContent": [[{"da_ddf": {"text": ["Thank you so much!!"]}}, {
         "da_meob": {
@@ -822,12 +763,12 @@ $(document).ready(function(){
         "traffic": [
           "email",
           "textMsg",
-          "direct"
+          "direct", "all"
         ],
         "pageType": "website",
         "device": [
           "mobile",
-          "desktop"
+          "desktop", "tablet"
         ],
         "region": [
           "USA",
@@ -875,7 +816,7 @@ $(document).ready(function(){
         },
         {
           "returnedData": {
-            "trafficAllocatedToBot": "0.5",
+            "trafficAllocatedToBot": "1.0",
             "automationLevel": "full",
             "schedule":
               {
@@ -1047,7 +988,7 @@ $(document).ready(function(){
       var response = publishTopicsMeta(a);
       var response = publishNodesMeta(a);
       var response = publishNodeInputContent(a);
-      var response = publishNodeOutputContent(a);
+  //    var response = publishNodeOutputContent(a);
       var response = publishSetupParameters(a);
       var response = publishActivateParameters(a);
 
