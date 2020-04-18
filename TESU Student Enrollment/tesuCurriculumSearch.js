@@ -95,7 +95,8 @@ $(document).ready(function(){
          {
            "topicID": 0,
            "topicName": "TESU Curriculum Search"
-         }
+         },
+
 
      ]
      }
@@ -581,7 +582,6 @@ $(document).ready(function(){
             "searchContent": false,
           }, //17
 
-
          // searchTile, searchContent - true
           {
             "topicID": 0,
@@ -625,7 +625,7 @@ $(document).ready(function(){
           {
             "topicID": 0,
             "nodeOrder": 21,
-            "nodeDisplayName": "Curriculum Overview",
+            "nodeDisplayName": "Curriculum Overview - General Requirements",
             "nodeTemplateCategory": "searchTile",
             "skipLogicType": "default",
             "skipLogic": [
@@ -638,7 +638,7 @@ $(document).ready(function(){
           {
             "topicID": 0,
             "nodeOrder": 22,
-            "nodeDisplayName": "Core Course Details",
+            "nodeDisplayName": "Curriculum Overview - Area of Study",
             "nodeTemplateCategory": "searchTile",
             "skipLogicType": "default",
             "skipLogic": [
@@ -648,10 +648,23 @@ $(document).ready(function(){
             "searchQuery": false,
             "searchContent": true,
           }, // 22
-
           {
             "topicID": 0,
             "nodeOrder": 23,
+            "nodeDisplayName": "Core Course Details",
+            "nodeTemplateCategory": "searchTile",
+            "skipLogicType": "default",
+            "skipLogic": [
+
+            ],
+            "dataPrefilled": false,
+            "searchQuery": false,
+            "searchContent": true,
+          }, // 23
+
+          {
+            "topicID": 0,
+            "nodeOrder": 24,
             "nodeDisplayName": "Continue Searching Academic Programs",
             "nodeTemplateCategory": "closeEndedQuestion",
             "skipLogicType": "complex",
@@ -668,7 +681,7 @@ $(document).ready(function(){
             "dataPrefilled": false,
             "searchQuery": false,
             "searchContent": false,
-          }, // 23
+          }, // 24
 
         ]
       }
@@ -1286,7 +1299,6 @@ $(document).ready(function(){
         ]
       }, // 0, 17, assoc, ug
 
-
       {
         "topicID": 0,
         "nodeOrder": 18,
@@ -1332,7 +1344,7 @@ $(document).ready(function(){
       {
           "topicID": 0,
           "nodeOrder": 21,
-          "nodeDisplayName": "Curriculum Overview",
+          "nodeDisplayName": "Curriculum Overview - General Requirements",
           "nodeTemplateCategory":  "searchTile",
           "searchContent": true,
           "searchQuery": false,
@@ -1345,7 +1357,21 @@ $(document).ready(function(){
         }, // 0, 21
       {
         "topicID": 0,
-        "nodeOrder": 22,
+        "nodeOrder": 21,
+        "nodeDisplayName": "Curriculum Overview - Area of Study",
+        "nodeTemplateCategory":  "searchTile",
+        "searchContent": true,
+        "searchQuery": false,
+        "nodeContentId": '801_0_21',
+        "conversationBlurbs":["So here are the suppliers we found for you", "Just slide each supplier profile ","By the way if you click on select I will remember your selection", "And send you an email with a summary of your selections"],
+        "audioAnnotation": [],
+        "nodeInputContent": [
+
+        ]
+      }, // 0, 22
+      {
+        "topicID": 0,
+        "nodeOrder": 23,
         "nodeDisplayName": "Core Course Details",
         "nodeTemplateCategory":  "searchTile",
         "searchContent": true,
@@ -1356,11 +1382,11 @@ $(document).ready(function(){
         "nodeInputContent": [
 
         ]
-      }, // 0, 22
+      }, // 0, 23
 
       {
         "topicID": 0,
-        "nodeOrder": 23,
+        "nodeOrder": 24,
         "nodeDisplayName": "Continue Searching Directory",
         "nodeTemplateCategory": "closeEndedQuestion",
         "answerRequired": true,
@@ -1379,7 +1405,7 @@ $(document).ready(function(){
           },
 
         ]
-      }, // 0, 23
+      }, // 0, 24
 
 
   ];

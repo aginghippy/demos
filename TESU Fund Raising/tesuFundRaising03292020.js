@@ -75,14 +75,18 @@ $(document).ready(function(){
               "vaid": variationID,
               "uscs": useCaseID,
               "tcnt": "1",
-              "ncnt": "3",
-              "cnam": "TESU Fund Raising",
-              "cimod": "PR-1",
+              "ncnt": "8",
+              "campaignName": "TESU Fund Raising",
+              "conversationInitiationMode": "PR-1",
               "webproperty": "bs-local.com",
-              "searchType": null,
+              "searchType": "",
               "campaignType": "simple",
-              "debugMode": false
+              "debugMode": true,
+              "audioAnnotation":false,
+              "visitorGreeting": "Hey there! Would you like to know how TESU can help advance your career?",
+              "introduceStory":[""]
             }
+
 
 
         }
@@ -99,8 +103,12 @@ $(document).ready(function(){
 
          {
            "topicID": 0,
-           "topicName": "Teachers Online Fund Raising"
-         }
+           "topicName": "TESU Online Fund Raising",
+           "topicDescription":"",
+           "topicImage":""
+         }, // topic 0
+
+
 
      ]
      }
@@ -258,6 +266,7 @@ $(document).ready(function(){
                 "label": "Other"
               }
             ],
+            "mediaOfferings":[],
     
             "paymentMethod": [
               {
@@ -322,59 +331,9 @@ $(document).ready(function(){
         "terminationMode": 'exitOnCurrentPage',
         "conversationBlurbs":[],
         "audioAnnotation": [],
-        "nodeInputContent": [[
-          {
-            "exitMessage": ["I am sorry to hear that"],
-          }
-        ],
-          [
-            {
-              'da_ddf': {
-                "text": ["Thank you so much for helping us out"]
-              }
-            },
-            {
-              'da_meob': {
-                "da_obseg": [{
-                  "da_ob_skey": "all",
-                  "da_ob_sval": "all"
-                }],
-                "da_disob": true
-              }
-            }
-          ],
-          [
-            {
-              'da_ddf': {
-                "text": ["Your contribution will make a difference"]
-              }
-            },
-            {
-              'da_meob': {
-                "da_obseg": [{
-                  "da_ob_skey": "all",
-                  "da_ob_sval": "all"
-                }],
-                "da_disob": true
-              }
-            }
-          ],
-          [
-            {
-              'da_ddf': {
-                "text": ["Good Bye Now!"]
-              }
-            },
-            {
-              'da_meob': {
-                "da_obseg": [{
-                  "da_ob_skey": "all",
-                  "da_ob_sval": "all"
-                }],
-                "da_disob": true
-              }
-            }
-          ]]
+        "nodeInputContent": [{
+          "exitMessage": ["I hope I was helpful", "Thank You Good Bye"]
+        }]
       },
   ];
 

@@ -26,8 +26,8 @@
       <file leaf-file-name="pmmiSurvey02172020.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pmmiSurvey02172020.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="539" column="3" selection-start-line="539" selection-start-column="3" selection-end-line="566" selection-end-column="8" />
+            <state relative-caret-position="109">
+              <caret line="239" column="27" lean-forward="true" selection-start-line="239" selection-start-column="27" selection-end-line="239" selection-end-column="27" />
               <folding>
                 <element signature="e#814#1318#0" />
                 <element signature="e#822#892#0" />
@@ -45,11 +45,8 @@
                 <element signature="e#2187#2329#0" />
                 <element signature="e#2212#2322#0" />
                 <element signature="e#2224#2314#0" />
-                <element signature="e#2359#10696#0" />
                 <element signature="e#2367#2430#0" />
                 <element signature="e#2389#2422#0" />
-                <element signature="e#2438#10690#0" />
-                <element signature="e#2464#10682#0" />
                 <element signature="e#2476#3006#0" />
                 <element signature="e#2690#2888#0" />
                 <element signature="e#2706#2782#0" />
@@ -62,7 +59,6 @@
                 <element signature="e#4382#4458#0" />
                 <element signature="e#4474#4549#0" />
                 <element signature="e#4694#5056#0" />
-                <element signature="e#5068#6148#0" />
                 <element signature="e#5323#6029#0" />
                 <element signature="e#5339#5424#0" />
                 <element signature="e#5440#5523#0" />
@@ -71,7 +67,6 @@
                 <element signature="e#5736#5819#0" />
                 <element signature="e#5835#5922#0" />
                 <element signature="e#5938#6015#0" />
-                <element signature="e#6160#6579#0" />
                 <element signature="e#6384#6460#0" />
                 <element signature="e#6400#6446#0" />
                 <element signature="e#6591#7016#0" />
@@ -191,7 +186,6 @@
                 <element signature="e#24071#24157#0" />
                 <element signature="e#24167#24254#0" />
                 <element signature="e#24264#24335#0" />
-                <element signature="e#24359#24862#0" />
                 <element signature="e#24655#24856#0" />
                 <element signature="e#24665#24847#0" />
                 <element signature="e#24868#26384#0" />
@@ -228,7 +222,6 @@
                 <element signature="e#28668#29098#0" />
                 <element signature="e#28964#29092#0" />
                 <element signature="e#28974#29084#0" />
-                <element signature="e#29104#29605#0" />
                 <element signature="e#29396#29599#0" />
                 <element signature="e#29406#29591#0" />
                 <element signature="e#29689#73690#0" />
@@ -912,7 +905,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="97" />
     <option name="y" value="56" />
     <option name="width" value="1155" />
@@ -923,7 +916,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -935,6 +927,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1095,28 +1088,31 @@
       <workItem from="1586008182027" duration="619000" />
       <workItem from="1586282200589" duration="1892000" />
       <workItem from="1586384352553" duration="1264000" />
+      <workItem from="1586961093310" duration="948000" />
+      <workItem from="1587039312071" duration="915000" />
+      <workItem from="1587133009951" duration="1267000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="323933000" />
+    <option name="totallyTimeSpent" value="327063000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09757943" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.102118" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -1291,8 +1287,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pmmiSurvey02172020.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="539" column="3" selection-start-line="539" selection-start-column="3" selection-end-line="566" selection-end-column="8" />
+        <state relative-caret-position="109">
+          <caret line="239" column="27" lean-forward="true" selection-start-line="239" selection-start-column="27" selection-end-line="239" selection-end-column="27" />
           <folding>
             <element signature="e#814#1318#0" />
             <element signature="e#822#892#0" />
@@ -1310,11 +1306,8 @@
             <element signature="e#2187#2329#0" />
             <element signature="e#2212#2322#0" />
             <element signature="e#2224#2314#0" />
-            <element signature="e#2359#10696#0" />
             <element signature="e#2367#2430#0" />
             <element signature="e#2389#2422#0" />
-            <element signature="e#2438#10690#0" />
-            <element signature="e#2464#10682#0" />
             <element signature="e#2476#3006#0" />
             <element signature="e#2690#2888#0" />
             <element signature="e#2706#2782#0" />
@@ -1327,7 +1320,6 @@
             <element signature="e#4382#4458#0" />
             <element signature="e#4474#4549#0" />
             <element signature="e#4694#5056#0" />
-            <element signature="e#5068#6148#0" />
             <element signature="e#5323#6029#0" />
             <element signature="e#5339#5424#0" />
             <element signature="e#5440#5523#0" />
@@ -1336,7 +1328,6 @@
             <element signature="e#5736#5819#0" />
             <element signature="e#5835#5922#0" />
             <element signature="e#5938#6015#0" />
-            <element signature="e#6160#6579#0" />
             <element signature="e#6384#6460#0" />
             <element signature="e#6400#6446#0" />
             <element signature="e#6591#7016#0" />
@@ -1456,7 +1447,6 @@
             <element signature="e#24071#24157#0" />
             <element signature="e#24167#24254#0" />
             <element signature="e#24264#24335#0" />
-            <element signature="e#24359#24862#0" />
             <element signature="e#24655#24856#0" />
             <element signature="e#24665#24847#0" />
             <element signature="e#24868#26384#0" />
@@ -1493,7 +1483,6 @@
             <element signature="e#28668#29098#0" />
             <element signature="e#28964#29092#0" />
             <element signature="e#28974#29084#0" />
-            <element signature="e#29104#29605#0" />
             <element signature="e#29396#29599#0" />
             <element signature="e#29406#29591#0" />
             <element signature="e#29689#73690#0" />

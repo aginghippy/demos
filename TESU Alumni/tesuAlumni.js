@@ -110,24 +110,24 @@ $(document).ready(function(){
            "topicID": 2,
            "topicName": "Share a Job",
            "topicDescription":"Share a Job & Tap into Skilled TESU Community",
-           "topicImage":"https://chalakh-bot-js.s3.us-east-2.amazonaws.com/images/innovation.png"
+           "topicImage":"https://chalakh-bot-js.s3.us-east-2.amazonaws.com/images/network.png"
          }, // topic 2
          {
            "topicID": 3,
            "topicName": "Help Your Alma Mater",
            "topicDescription":"Donate to Help Your Alma Mater Flourish & Grow",
-           "topicImage":"https://chalakh-bot-js.s3.us-east-2.amazonaws.com/images/innovation.png"
+           "topicImage":"https://chalakh-bot-js.s3.us-east-2.amazonaws.com/images/fundraising.png"
          }, // topic 3
          {
            "topicID": 4,
            "topicName": "Recent TESU Update",
            "topicDescription":"Check Out Recent Fun Events & College Developments",
-           "topicImage":"https://chalakh-bot-js.s3.us-east-2.amazonaws.com/images/innovation.png"
+           "topicImage":"https://chalakh-bot-js.s3.us-east-2.amazonaws.com/images/overview.png"
          } // topic 4
 
      ]
      }
-    ], // important topics have to start at 1, 2, 3 , 4 since topic 0 (t11) is created by cret
+    ], // topics start at 0 - and cret changes them to 1, 2 to insert the root node (topic 0, order 0)
 
     storyNodesMeta = [
       {
@@ -3849,7 +3849,7 @@ $(document).ready(function(){
       }, // topic 4, 6
 
 
-  ]; // this has ddfs in it
+  ]; // this has ddfs in it, but now automatically created
 
     storyNodesInputContent = [
 
@@ -4958,7 +4958,6 @@ $(document).ready(function(){
       "audioAnnotation": [],
       "nodeInputContent": [
         {
-
           "callToAction": "Your Contribution Will Make a Big Difference",
           "donationChoices": [
             {
@@ -4992,7 +4991,6 @@ $(document).ready(function(){
               "label": "Other"
             }
           ],
-
           "paymentMethod": [
             {
               "digitalWalletsAccepted": [
@@ -5072,7 +5070,7 @@ $(document).ready(function(){
       "audioAnnotation": [],
       "mediaType":"video",
       "nodeInputContent": [ // array of arrays with multiple categories of images - KeyNotes, Award Night, etc
-        [
+
           {
             "mediaTitle": "Marvin D. Swede Johnson CASE Award",
             "mediaSubtitle": "Profile of This Year's Awardee",
@@ -5080,7 +5078,7 @@ $(document).ready(function(){
             "uploadedAVMedia": "https://chalakh-bot-js.s3.us-east-2.amazonaws.com/tesu/videos/caseaward.mp4"
           }
 
-        ],
+
       ],
 
     }, //topic 4,0
@@ -9477,14 +9475,30 @@ $(document).ready(function(){
 
     }
 
+    function wait(ms)
+    {
+      var d = new Date();
+      var d2 = null;
+      do { d2 = new Date(); }
+      while(d2-d < ms);
+    }
+
     function publishNodeInputContent(a) {
 
        var payload = [];
 
        metaData = {"trid":trackingID};
        payload[0] = {metaData};
+       var counter = 0;
 
       for (var n = 0; n < storyNodesInputContent.length; n++) {
+
+          counter = counter+1;
+
+          if (counter == 5) {
+            wait(500);
+            counter = 0;
+          }
 
           returnedData = storyNodesInputContent[n];
           payload[1] = {returnedData};
@@ -9539,7 +9553,7 @@ $(document).ready(function(){
       var response = publishCampaignConversionGoals(a);
 
 
-  }
+  } // disabled node output publishing - handled by creator
 
     function updateCampaignAll(a) {
 
