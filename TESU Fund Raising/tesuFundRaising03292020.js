@@ -2,7 +2,9 @@
 
 $(document).ready(function(){
 
-    $("#newCampaignAll").click(newCampaignAll);
+    $("#synchronousStuff").click(synchronousStuff);
+
+    $("#asynchronousStuff").click(asynchronousStuff);
 
     $("#updateCampaignALL").click(updateCampaignAll);
 
@@ -32,7 +34,8 @@ $(document).ready(function(){
     trackingID= 544,
     useCaseID = 1,
     variationID = 1,
-    postAPI = "http://127.0.0.1:8000/api/webhooks",
+   // postAPI = "http://127.0.0.1:8000/api/webhooks",
+    postAPI = "https://cret.chalakh.co/api/webhooks",
 
     campaignMetaUpdate = [
       {
@@ -83,14 +86,33 @@ $(document).ready(function(){
               "campaignType": "simple",
               "debugMode": true,
               "audioAnnotation":false,
-              "visitorGreeting": "Hey there! Would you like to know how TESU can help advance your career?",
-              "introduceStory":[""]
+              "visitorGreeting": ["Hey there! Would you like to know how TESU can help advance your career?"],
+              "introduceStory":[""],
+              "callToAction":[
+
+               /* {"capability": "allowVisitorToMakeCall",
+                  "callToAction": "Call Now!",
+                  "callToActionAttribute": "2034220459"
+                }, */
+                {"capability": "sendVisitorToHighValuePage",
+                  "callToAction": "Apply Now",
+                  "callToActionAttribute": "https://www.tesu.edu/apply"
+                },
+                {"capability": "getVisitorContactInformation",
+                  "callToAction": "Request Information",
+                  "callToActionAttribute": ""
+                },
+                 {"capability": "downloadImportantDocument",
+                  "callToAction": "Call Now!",
+                  "callToActionAttribute": "https://chalakh-bot-js.s3.us-east-2.amazonaws.com/tesu/docs/catalog-ug.pdf"
+                },
+              ]
             }
 
 
 
         }
-      ],
+      ],  // important visitor greeting needs to be an array; since converted to NIMB for PA-1
 
     storyTopicsMeta = [
      {
@@ -776,7 +798,35 @@ $(document).ready(function(){
         {
           "returnedData": {
             "trafficAllocatedToBot": "1.0",
-            "automationLevel": "full",
+            "optimization": {
+              "optimizationMethod": "manualOptimization",
+
+              "conversationInitiationMode": "hybrid",
+              "websiteBehaviour": [
+                {
+                  "behaviorType": "secondsOnPage",
+                  "triggerValue": "30",
+                  "logicOperand":null
+                },
+                {
+                  "behaviorType": "secondsOnWebsite",
+                  "triggerValue": "60",
+                  "logicOperand":"or"
+                },
+                {
+                  "behaviorType": "pageViews",
+                  "triggerValue": "1",
+                  "logicOperand":"and"
+                },
+                /*
+                {
+                  "behaviorType": "pageScrollDepth",
+                  "triggerValue": "60",
+                  "logicOperand":"and"
+                } */
+
+              ]
+            },
             "schedule":
               {
                 "timeZone": "EST",
@@ -821,10 +871,69 @@ $(document).ready(function(){
 
           }
         }
-      ];
+      ]; // json for manual optimization, scroll depth commented out, since a little complicaed
+
+    SelfactivateParameters = [
+    {
+      "metaData": {
+        "trid": "544"
+      }
+    },
+    {
+      "returnedData": {
+        "trafficAllocatedToBot": "1.0",
+        "optimization": {
+          "optimizationMethod": "selfOptimization",
+
+        },
+        "schedule":
+          {
+            "timeZone": "EST",
+            "scheduledHours": [
+              {
+                "day": "Monday",
+                "from": "0",
+                "to": "23"
+              },
+              {
+                "day": "Tuesday",
+                "from": "0",
+                "to": "23"
+              },
+              {
+                "day": "Wednesday",
+                "from": "0",
+                "to": "23"
+              },
+              {
+                "day": "Thursday",
+                "from": "0",
+                "to": "23"
+              },
+              {
+                "day": "Friday",
+                "from": "0",
+                "to": "23"
+              },
+              {
+                "day": "Saturday",
+                "from": "0",
+                "to": "23"
+              },
+              {
+                "day": "Sunday",
+                "from": "0",
+                "to": "23"
+              }
+            ]
+          }
+
+      }
+    }
+  ]; // json for self optimization
 
 
-    function postPayload(dataToBeSent, webHookType, trid) { // for now for surveys, answers and contact information - but can be for other user case
+    function OldpostPayload(dataToBeSent, webHookType, trid) { // for now for surveys, answers and contact information - but can be for other user case
 
 
      apiURL = postAPI +'?whtype=' + webHookType + '&trid=' + trid;
@@ -854,7 +963,40 @@ $(document).ready(function(){
         console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
       }
     });
-  }
+  } // without concept of promise
+
+    function postPayload(dataToBeSent, webHookType, trid) { // for now for surveys, answers and contact information - but can be for other user case
+
+        apiURL = postAPI +'?whtype=' + webHookType + '&trid=' + trid;
+        dataToBeSent = JSON.stringify(dataToBeSent); // if the object is not pure JSON the data is not posted
+        var deferred = $.Deferred();
+        $.ajax({
+          method: 'POST', // only post is valid
+          dataType: 'json', // this is what is received;
+          //  contentType: "application/x-www-form-urlencoded", // data being sent; this format means a key-value pair
+          contentType: "application/json", // IMPORTANT. DONT use it this will trigger a preflight handshake, with an OPTIONS call; Need Laravel to Handle that
+          data: dataToBeSent,
+
+          url: apiURL,
+          success: function (response, status, xhr) { // What to do if we succeed
+            console.log(response, status);
+            try {
+              var q = JSON.parse(response);
+            } catch (e) {
+              var a = JSON.stringify(response);
+            }
+            console.log(response, status, xhr.statusText);
+            deferred.resolve(response);
+
+          },
+          error: function (jqXHR, response, textStatus, errorThrown) { // What to do if we fail
+            console.log(JSON.stringify(jqXHR));
+            console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+            deferred.reject(response);
+          }
+        });
+        return deferred.promise();
+  } // with concept of promise
 
     function newCampaignMeta(a) {
 
@@ -941,18 +1083,50 @@ $(document).ready(function(){
 
   }
 
-    function newCampaignAll(a) {
+  //https://www.webniraj.com/2018/10/08/making-ajax-calls-sequentially-using-jquery/
+
+    function OldnewCampaignAll(a) {
 
       var response = newCampaignMeta(a);
       var response = publishTopicsMeta(a);
       var response = publishNodesMeta(a);
       var response = publishNodeInputContent(a);
-  //    var response = publishNodeOutputContent(a);
+
       var response = publishSetupParameters(a);
       var response = publishActivateParameters(a);
 
 
   }
+
+    function synchronousStuff(a) {
+
+      var items = [ [campaignMetaNew, 'start', trackingID],
+                    [storyTopicsMeta, 'topicsMeta', trackingID],
+                    [storyNodesMeta, 'nodesMeta', trackingID],
+                    ];
+
+        var looper = $.Deferred().resolve();
+
+        // go through each item and call the ajax function
+          $.when.apply($, $.map(items, function(item, i) {
+            looper = looper.then(function() {
+                // trigger ajax call with item data
+                return postPayload(item[0], item[1], item[2]);
+            });
+            return looper;
+          })).then(function() {
+            // run this after all ajax calls have completed
+            console.log('Done!');
+          });
+    } // to make sure campaign meta, topics meta, and node meta are published sequentially
+
+    function asynchronousStuff(a) {
+
+       var response = publishNodeInputContent(a);
+       var response = publishSetupParameters(a);
+       var response = publishActivateParameters(a);
+
+  }  // rest of the stuff - node input, activate, setup object
 
     function updateCampaignAll(a) {
 

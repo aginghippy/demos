@@ -1850,7 +1850,7 @@ $(document).ready(function(){
         "audioAnnotation": [],
         "nodeInputContent": [
           {
-            "exitMessage": [""],
+            "exitMessage": [],
           }
         ]
       }, // 0, 24 go back to start
